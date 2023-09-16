@@ -1,1 +1,1 @@
-# rickardsinvitational.github.io
+# Rickards Invitational
