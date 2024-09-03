@@ -1,0 +1,48 @@
+.page__footer {
+  background-color: #14436e !important;
+  color: #ffffff; /* Ensure the text is readable */
+}
+
+
+.site-footer {
+  background-color: #14436e; /* Sets the footer background to dark navy blue */
+  color: #ffffff; /* Ensures text is readable on the dark background */
+  padding: 1rem 0; /* Adds padding for spacing */
+}
+
+.footer-content {
+  text-align: center;
+  margin: 0;
+  color: #ffffff; /* Ensure the text is readable */
+}
+
+.footer-email {
+  margin-bottom: 0.5rem;
+}
+
+.footer-heading {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.footer-nav ul li {
+  margin: 0;
+}
+
+.footer-nav ul li a {
+  text-decoration: none;
+  color: #ffffff; /* Sets link color to white */
+}
+
+.footer-nav ul li a:hover {
+  text-decoration: underline;
+}
+
