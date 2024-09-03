@@ -4,4 +4,4 @@ main:
   - title: "Online Registration"
     url: /registration
   - title: "Past Tests"
-    url: /categories/
+    url: /past-tests
