@@ -21,18 +21,18 @@
 title: Rickards Invitational
 email: rickardsinvitational@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  The James S. Rickards Fall Invitational is one of the largest competitions in the Southeast, generally with over 1,000 competitors from over 45 elementary, middle, and high schools..
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://rickardsinvitational.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+keywords: "Rickards Invitational, Rickards Math, Rickards MAO, Rickards, Mu Alpha, Rickards Math Competition"
 
 # Build settings
 theme: minimal-mistakes-jekyll
 minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 plugins:
   - jekyll-feed
-
+  - jekyll-sitemap
+  - jekyll-seo-tag
 # Reading Files
 include:
   - .htaccess
