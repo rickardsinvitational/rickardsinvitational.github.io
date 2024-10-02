@@ -17,11 +17,39 @@ layout: default
     line-height: 1;
     letter-spacing: -1px;
   }
+
+  .submenu-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .submenu-item {
+    margin: 10px 0;
+  }
+
+  .submenu-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .submenu-item a:hover {
+    text-decoration: underline;
+  }
+
 </style>
 
 <div class="container">
-
- <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSctYo4rFYg6IzhH2zza36UTEAKjb3Zv7qdRaZRX-YHEzXNVWg/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<p><strong>Registration for 2024.</strong></p>
+<ul class="submenu-list">
+  {% for item in site.data.navigation.main %}
+    {% if item.title == "Online Registration" %}
+      {% for child in item.children %}
+        <li class="submenu-item"><a href="{{ child.url | relative_url }}">{{ child.title }}</a></li>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+</ul>
 
 
 </div>
