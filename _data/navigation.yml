@@ -3,7 +3,7 @@ main:
     url: /
   - title: "Online Registration"
     url: /registration
-     children:
+    children:
       - title: "Elementary"
         url: "/registration1"
       - title: "Middle and High School"
