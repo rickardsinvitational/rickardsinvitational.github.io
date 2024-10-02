@@ -5,10 +5,10 @@ main:
     url: /registration
      children:
       - title: "Elementary"
-        url: "/services/consulting/"
+        url: "/registration1"
       - title: "Middle and High School"
-        url: "/services/development/"
+        url: "/registration2"
       - title: "Mail In"
-        url: "/services/support/"
+        url: "/registration3"
   - title: "Past Tests"
     url: /past-tests
