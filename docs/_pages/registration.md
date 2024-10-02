@@ -22,6 +22,7 @@ layout: default
 <br/>
   <p><strong>Registration for 2024 is Not Open Yet.</strong></p>
         <p>Thank you for your interest! The registration for the 2024 event is not yet open. Please check back later for updates.</p>
- 
+ <iframe src="https://forms.gle/ASJ9L3pEARKMV7bdA" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
 
 </div>
