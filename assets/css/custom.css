@@ -46,3 +46,45 @@
   text-decoration: underline;
 }
 
+/* Hide submenus by default */
+.visible-links .sub-menu {
+  display: none; /* This hides the submenu */
+  position: absolute; /* Ensures it appears as a dropdown */
+  background-color: #fff; /* Background color for the submenu */
+  padding: 10px; /* Add some padding to the submenu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a shadow effect */
+  z-index: 999; /* Ensures submenu appears above other elements */
+}
+
+/* Show submenu when hovering over the parent menu item */
+.visible-links li:hover > .sub-menu {
+  display: block; /* This shows the submenu on hover */
+}
+
+/* Optional: Style for submenu items */
+.visible-links .sub-menu li {
+  padding: 5px 10px;
+}
+
+.visible-links .sub-menu li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.visible-links .sub-menu li a:hover {
+  background-color: #ddd;
+}
+
+
+.full-screen-iframe {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden; /* Prevents scrolling inside the iframe container */
+}
+
+.full-screen-iframe iframe {
+  width: 100%;
+  height: 100%; /* Makes the iframe take up the full height of the container */
+  border: none; /* Removes the border */
+  overflow: hidden; /* Prevents internal scrolling */
+}
