@@ -3,5 +3,12 @@ main:
     url: /
   - title: "Online Registration"
     url: /registration
+     children:
+      - title: "Elementary"
+        url: "/services/consulting/"
+      - title: "Middle and High School"
+        url: "/services/development/"
+      - title: "Mail In"
+        url: "/services/support/"
   - title: "Past Tests"
     url: /past-tests
