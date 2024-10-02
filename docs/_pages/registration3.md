@@ -1,5 +1,6 @@
 ---
 permalink: /registration3
+title: "Mail Registration"
 layout: default
 ---
 

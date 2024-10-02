@@ -1,5 +1,6 @@
 ---
 permalink: /registration1
+title: "Elementary Registration"
 layout: default
 ---
 

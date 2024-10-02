@@ -1,5 +1,6 @@
 ---
 permalink: /registration2
+title: "Middle/High Registration"
 layout: default
 ---
 
