@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Registration open for 2024"
+title:  "Registration is NOT OPEN for 2025"
 date:   2024-09-18 17:17:46 -0400
 categories: rickards update
 ---
-Registration is officially open for all divisions and can be accessed through the registration tab on this website
+Registration will open in August for all schools wishing to compete. Registration will be handled through this website.
