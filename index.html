@@ -1,441 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rickards High School Math Invitational</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700&display=swap">
-    <!-- Add GSAP library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-    <style>
-        /* Reset some default styles */
-        body, h1, p {
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rickards High School Math Invitational</title>
 
-        /* Global styles */
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
 
-        /* Styles for the navigation section at the top */
-        .navigation {
-            text-align: center;
-            background-color: #007BFF;
-            color: #fff;
-            padding: 20px 0;
-            position: fixed; /* Set to fixed position */
-            top: 0; /* Show it at the top */
-            width: 100%;
-            z-index: 999; /* Ensure it's above other content */
-        }
+  <!-- Animate On Scroll -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 
-        .navigation a {
-            text-decoration: none;
-            color: #fff;
-            margin: 0 10px;
-            font-weight: bold;
-        }
+  <style>
+    /*–– Variables & Reset ––*/
+    :root {
+      --primary: #0057ff;
+      --secondary: #ffdd57;
+      --light: #f5f7fa;
+      --text: #333;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--light);
+      color: var(--text);
+    }
 
-        /* Styles for the fullscreen banner */
-        .fullscreen-banner {
-            width: 100%;
-            height: 100vh; /* Full viewport height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #007BFF;
-            color: #fff;
-            overflow: hidden; /* Hide overflow to prevent scrolling */
-            position: relative;
-        }
+    /*–– Sticky Header ––*/
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      margin: 0 1rem;
+      font-weight: 600;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
 
-        header img {
-            max-width: 100%;
-            height: auto;
-        }
+    /*–– Hero Overrides ––*/
+    /* leave all other sections alone */
+    section:not(.hero) {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+    }
 
-        /* Typing animation for the banner text */
-        .typing-animation {
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: 2px solid #fff;
-            font-size: 36px;
-            animation: typing 4s steps(20) forwards, blink-caret 0.5s step-end infinite;
-            /* Reduced the animation duration to 4 seconds */
-        }
+    /* full-bleed 100% of viewport */
+    .hero {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1.1;
+      margin-bottom: 0.5em;
+    }
+    .hero p {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      opacity: 0.9;
+    }
+    .scroll-down {
+      position: absolute;
+      bottom: 2rem;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50%    { transform: translateY(-10px); }
+    }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
+    /*–– Intro Block ––*/
+    .intro p {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
 
-        @keyframes blink-caret {
-            from, to {
-                border-color: transparent;
-            }
-            50% {
-                border-color: #fff;
-            }
-        }
+    /*–– Why Us Cards ––*/
+    .why-us {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
 
-        /* Add styling for the container */
-        .container {
-            padding: 20px;
-            text-align: center;
-        }
-
-        p {
-            font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 15px; /* Add margin-bottom for line spacing */
-        }
-
-        /* Confetti animation styles */
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #f0f;
-            clip-path: polygon(50% 0%, 61.8% 38.2%, 100% 50%, 61.8% 61.8%, 50% 100%, 38.2% 61.8%, 0% 50%, 38.2% 38.2%);
-            animation: confetti-fall 4s ease-in-out infinite;
-        }
-
-        @keyframes confetti-fall {
-            0% {
-                transform: translateY(0) rotate(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
-
-        .fullscreen-banner.dark-mode {
-            background-color: #444;
-        }
-
-        /* Dark mode toggle switch styles */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999;
-        }
-
-        .toggle-checkbox {
-            display: none;
-        }
-
-        .toggle-label {
-            background-color: #444;
-            border-radius: 20px;
-            width: 50px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            padding: 2px;
-            cursor: pointer;
-            position: relative;
-            transition: background-color 0.3s; /* Add transition */
-        }
-
-        .toggle-slider {
-            width: 20px;
-            height: 20px;
-            background-color: #000; /* Set circle color to dark in light mode */
-            border-radius: 50%;
-            position: absolute;
-            right: 2px; /* Move circle to the right in light mode */
-            transition: transform 0.3s, background-color 0.3s; /* Add transition */
-        }
-
-        /* Adjust the position of the slider based on dark mode state */
-        .toggle-checkbox:checked + .toggle-label .toggle-slider {
-            transform: translateX(26px);
-            background-color: #fff; /* Change color when switched to dark mode */
-        }
-
-        /* Update background color for the container in dark mode */
-        body.dark-mode .container {
-            background-color: #222; /* Dark background color */
-        }
-
-        /* Text color for dark mode */
-        body.dark-mode p, body.dark-mode h1 {
-            color: #fff;
-        }
-
-        /* Styles for the timeline section */
-        .timeline-section {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-start; /* Change alignment to flex-start */
-            height: auto; /* Remove fixed height */
-            padding-bottom: 20vh; /* Add some padding at the bottom of the timeline section */
-        }
-
-        .timeline-element {
-            opacity: 0;
-            transform: translateY(20px);
-            text-align: center;
-            width: 30%;
-        }
-
-        /* Styling for individual timeline parts */
-        .timeline-element h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        /* "Why Us" header */
-        .why-us-header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* Online Registration section styles */
-        .online-registration {
-            background-color: #eee;
-            padding: 20px;
-            text-align: left;
-        }
-
-        .online-registration p {
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-
-        /* Styles for the competition handbooks section */
-        .competition-handbooks {
-            background-color: #eee;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .competition-handbooks h2 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        /* Handbook buttons container */
-        .handbook-container {
-            opacity: 1; /* Change opacity to 1 to keep the buttons visible */
-            transform: translateY(0); /* Change transform to 0 to keep the buttons visible */
-        }
-
-        .handbook-buttons {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .handbook-button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 18px;
-            text-decoration: none;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .handbook-button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
-        }
-
-        /* Styles for each handbook button */
-        .elementary-button {
-            background-color: #F64D38; /* Red */
-        }
-
-        .middle-school-button {
-            background-color: #FFD700; /* Gold */
-        }
-
-        .mail-in-button {
-            background-color: #32CD32; /* Green */
-        }
-    </style>
+    /*–– Handbook Buttons ––*/
+    .handbooks {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .handbooks .card {
+      text-align: center;
+    }
+    .handbooks .card a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .handbooks .card a:hover {
+      background: #0041cc;
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Navigation section (at the top) -->
-    <div class="navigation" id="navigation">
-        <!-- ... (navigation links) ... -->
+  <header>
+    <nav>
+      <div><strong>Rickards Invitational</strong></div>
+      <div>
         <a href="index.html">Home</a>
-        <a href="registration.html">Online Registration</a> <!-- Updated link -->
-        <a href="past-tests.html">Past Tests</a> <!-- Updated link -->
+        <a href="registration.html">Registration</a>
+        <a href="past-tests.html">Past Tests</a>
+      </div>
+    </nav>
+  </header>
+
+  <!--–––––––––––––––– Hero ––––––––––––––––-->
+  <section class="hero">
+    <h1 data-aos="fade-down">Welcome to the Rickards High School Math Invitational</h1>
+    <p data-aos="fade-up" data-aos-delay="200">One of the largest competitions in the Southeast.</p>
+    <div class="scroll-down">⌄</div>
+  </section>
+
+  <!--–––––––––––––––– Intro ––––––––––––––––-->
+  <section class="intro" data-aos="fade-up">
+    <p>
+      The James S. Rickards Fall Invitational draws over 1,000 competitors from 45+ schools. Join us in-person on Saturday, November 8th, 2025, or compete nationwide via our mail-in division. After tests are submitted, results will be revealed in an online ceremony. Check your level’s Competition Handbook below, or email us at <a href="mailto:rickardsinvitational@gmail.com">rickardsinvitational@gmail.com</a>.
+    </p>
+  </section>
+
+  <!--–––––––––––––––– Why Us ––––––––––––––––-->
+  <section class="why-us">
+    <div class="card" data-aos="zoom-in">
+      <h3>1,000+ Competitors</h3>
+      <p>Compete alongside some of the brightest students in the region.</p>
     </div>
-
-    <div class="fullscreen-banner">
-        <h1 class="typing-animation">Welcome to the Rickards High School Math Invitational</h1>
-        <!-- Replace scroll button with "scroll down for more" text -->
-        <div class="scroll-down-text">
-            <p>Scroll down for more</p>
-        </div>
+    <div class="card" data-aos="zoom-in" data-aos-delay="150">
+      <h3>Challenging Problems</h3>
+      <p>Push your skills with unique, thought-provoking questions.</p>
     </div>
-
-    <div class="container" id="content">
-        <!-- Content goes here -->
-        <p>The James S. Rickards Fall Invitational is one of the largest competitions in the Southeast, generally with over 1,000 competitors from over 45 elementary, middle, and high schools. This year the Invitational will be held in-person on Saturday, November 11th, 2023. 
-
- 
-
-            To expand our competition, we are incorporating a nationwide mail-in division this year. Schools may register to compete online from anywhere in the country. After the tests have been taken, the schools will send in PDF files of their scantrons and results will be displayed at an online ceremony at a later time. Awards for mail-in will be in a separate division than in-person.
-            
-            
-            Please read the Competition Handbook pertaining to your level, included below, for further details on the updated format, and send any inquiries you have to our email at rickardsinvitational@gmail.com.
-             </p>
+    <div class="card" data-aos="zoom-in" data-aos-delay="300">
+      <h3>Student-Run</h3>
+      <p>Organized by passionate students who love math as much as you do.</p>
     </div>
+  </section>
 
-    <!-- "Why Us" header -->
-    <div class="container why-us-header">
-        <h2>Why Us</h2>
+  <!--–––––––––––––––– Handbooks ––––––––––––––––-->
+  <section class="handbooks">
+    <div class="card" data-aos="flip-left">
+      <h3>Elementary Handbook</h3>
+      <a href="Invitational_Competition_Handbooks_2023 (5).pdf" target="_blank">Download PDF</a>
     </div>
-
-    <!-- Timeline section -->
-    <div class="container" id="timeline">
-        <div class="timeline-section">
-            <!-- Timeline elements -->
-            <div class="timeline-element">
-                <h3>We Have 1000 Competitors</h3>
-                <p>Participate in one of the largest math competitions in the Southeast.</p>
-            </div>
-            <div class="timeline-element">
-                <h3>Challenging Problems</h3>
-                <p>Test your skills with challenging math problems designed to inspire.</p>
-            </div>
-            <div class="timeline-element">
-                <h3>It Is Made By Students</h3>
-                <p>Run by dedicated students who share your passion for mathematics.</p>
-            </div>
-        </div>
+    <div class="card" data-aos="flip-left" data-aos-delay="150">
+      <h3>Middle/High Handbook</h3>
+      <a href="Invitational_Competition_Handbooks_2023 (3) (2).pdf" target="_blank">Download PDF</a>
     </div>
-
-    <!-- Competition Handbooks section -->
-    <div class="container competition-handbooks" id="competition-handbooks">
-        <h2>Competition Handbooks</h2>
-        <!-- Handbook buttons container -->
-        <div class="handbook-container">
-            <!-- Elementary Handbook Button -->
-            <a href="Invitational_Competition_Handbooks_2023 (5).pdf" class="handbook-button elementary-button">Elementary Handbook</a>
-
-            <!-- Middle School Handbook Button -->
-            <a href="Invitational_Competition_Handbooks_2023 (3) (2).pdf" class="handbook-button middle-school-button">Middle/High Handbook</a>
-
-            <!-- Mail-In Handbook Button -->
-            <a href="Invitational_Competition_Handbooks_2023 (1) (1).pdf" class="handbook-button mail-in-button">Mail-In Handbook</a>
-        </div>
+    <div class="card" data-aos="flip-left" data-aos-delay="300">
+      <h3>Mail-In Handbook</h3>
+      <a href="Invitational_Competition_Handbooks_2023 (1) (1).pdf" target="_blank">Download PDF</a>
     </div>
+  </section>
 
-    <!-- Dark mode toggle switch -->
-    <input type="checkbox" id="toggleSwitch" class="toggle-checkbox">
-    <label class="dark-mode-toggle" for="toggleSwitch">
-        <div class="toggle-label">
-            <span class="toggle-slider"></span>
-        </div>
-    </label>
-
-    <script>
-        // JavaScript to stop the typing animation after 4 seconds
-        const typingElement = document.querySelector('.typing-animation');
-        setTimeout(() => {
-            typingElement.style.animation = 'none'; // Stop the animation
-        }, 2500); // 4 seconds
-
-        // Check if dark mode preference is stored and apply it
-        const savedDarkMode = localStorage.getItem("darkMode");
-        if (savedDarkMode === "true") {
-            document.body.classList.add("dark-mode");
-        }
-
-        const toggleSwitch = document.getElementById("toggleSwitch");
-        const body = document.body;
-        const container = document.querySelector(".container");
-
-        toggleSwitch.addEventListener("change", () => {
-            body.classList.toggle("dark-mode");
-            // Save the dark mode preference in localStorage
-            localStorage.setItem("darkMode", body.classList.contains("dark-mode"));
-            // Change the toggle switch background color
-            const toggleLabel = document.querySelector(".toggle-label");
-            toggleLabel.style.backgroundColor = body.classList.contains("dark-mode") ? "#444" : "#fff";
-
-            // Update circle color in light mode
-            const toggleSlider = document.querySelector(".toggle-slider");
-            toggleSlider.style.backgroundColor = body.classList.contains("dark-mode") ? "#fff" : "#000";
-
-            // Adjust circle position in light mode
-            toggleSlider.style.right = body.classList.contains("dark-mode") ? "2px" : "28px";
-        });
-
-        // Animate timeline elements
-        gsap.registerPlugin(ScrollTrigger);
-
-        function animateTimeline() {
-            const timelineElements = document.querySelectorAll('.timeline-element');
-
-            timelineElements.forEach((element, index) => {
-                gsap.to(element, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%', // Adjust this value to control when the animation triggers
-                        toggleActions: 'play none none', // Remove "reverse" here
-                    },
-                });
-            });
-
-            // Animate handbook container when scrolled into view
-            gsap.to(".handbook-container", {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: ".handbook-buttons",
-                    start: "top 80%", // Adjust this value to control when the animation triggers
-                    toggleActions: "play none none", // Remove "reverse" here
-                },
-            });
-        }
-
-        // Call the animateTimeline function when the page loads
-        window.addEventListener('load', animateTimeline);
-
-        // Remove the animation for handbook buttons
-        // gsap.to(".handbook-button", {
-        //     opacity: 0,
-        //     y: 20,
-        //     duration: 1,
-        //     scrollTrigger: {
-        //         trigger: ".handbook-buttons",
-        //         start: "top 80%", // Adjust this value to control when the animation triggers
-        //         toggleActions: "play none none reverse",
-        //     },
-        // });
-    </script>
+  <!-- AOS Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true });
+  </script>
 </body>
 </html>
