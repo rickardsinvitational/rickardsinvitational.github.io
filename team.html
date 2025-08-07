@@ -50,9 +50,7 @@
 
     /* Page Title */
     .team-header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      text-align: center;
       margin: 2rem 0 1rem;
     }
     .team-header h1 {
@@ -61,34 +59,31 @@
       margin: 0;
     }
 
-    /* Slider: vertical centering + fixed height */
-    .slider {
-      overflow: hidden;
-      padding-bottom: 4rem;
-      height: 60vh;
-      display: flex;
-      align-items: center;
-    }
-    .slider-content {
-      display: flex;
-      flex-wrap: nowrap;
+    /* Grid Layout */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 1rem;
     }
 
-    /* Team Card: made bigger */
+    /* Team Card */
     .team-member {
-      flex: 0 0 auto;
-      width: 400px;
-      margin-right: 2rem;
       background: #fff;
-      padding: 3rem;
+      padding: 2.5rem;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
       cursor: pointer;
       transition: transform .3s, box-shadow .3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .team-member:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     }
     .team-member img {
@@ -104,8 +99,9 @@
       font-size: 2rem;
     }
     .team-member p {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       color: #555;
+      flex-shrink: 0;
     }
 
     /* Modal */
@@ -124,35 +120,39 @@
       background: #fff;
       padding: 2rem;
       border-radius: 12px;
-      max-width: 90%;
+      /* make it skinnier: */
+      width: 90%;
+      max-width: 500px;
+      margin: 0 1rem;
       max-height: 90%;
       overflow-y: auto;
       text-align: center;
     }
     .modal-view {
-      width: auto !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      box-shadow: none !important;
+      margin-bottom: 1rem;
     }
     .modal-view img {
-      width: 220px;
-      height: 220px;
+      width: 220px; height: 220px;
+      object-fit: cover; border-radius: 50%;
       margin-bottom: 1rem;
     }
     .modal-view h3 {
       font-size: 2.5rem;
       margin-bottom: .5rem;
+      color: var(--primary);
     }
     .modal-view p {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
     }
     .modal-intro {
       font-size: 1.1rem;
       color: #333;
       line-height: 1.6;
-      margin-top: 1rem;
+      /* allow wrapping onto multiple lines */
+      white-space: normal;
+      word-break: break-word;
+      text-align: center;
     }
   </style>
 </head>
@@ -168,83 +168,61 @@
     </nav>
   </header>
 
-  <!-- Title -->
   <div class="team-header">
     <h1>TEAM</h1>
   </div>
 
-  <!-- Slider -->
-  <div class="slider" id="slider">
-    <div class="slider-content" id="track">
-      <!-- Cards unchanged (with your data-intro descriptions) -->
-      <div class="team-member" data-intro="Hey everyone, I’m Himank Chhaya and I am super excited to be President!  If I’m not listening to Drake or playing basketball, you might catch me writing math problems or practicing the guitar.">
-        <img src="himankchhaya.png" alt="Himank Chhaya">
-        <h3>Himank Chhaya</h3>
-        <p>President & Director</p>
-      </div>
-      <div class="team-member" data-intro="Hello! My name is Ashvin Sinha and I am the Vice President of Org. When I am not doing math or Science Olympiad, I am either watching basketball highlights or playing the piano.">
-        <img src="ashvinsinha.jpg" alt="Ashvin Sinha">
-        <h3>Ashvin Sinha</h3>
-        <p>VP of Organization</p>
-      </div>
-      <div class="team-member" data-intro="Hey guys! I am the one and only Jonathan George and I am the Vice President of Finance. I love solving (aka looking at solutions) for hard math problems.">
-        <img src="jonathangeorge.png" alt="Jonathan George">
-        <h3>Jonathan George</h3>
-        <p>VP of Finance</p>
-      </div>
-      <div class="team-member" data-intro="Hi Everyone! My name is Rakesh Raj and I am the Alpha Captain. As a D1 Lebron Glazer constantly scrolling through reels, Lebron has motivated me to believe that obstacles don't have to stop you.">
-        <img src="rakeshraj.jpg" alt="Rakesh Raj">
-        <h3>Rakesh Raj</h3>
-        <p>Alpha Captain</p>
-      </div>
-      <div class="team-member" data-intro="Hello Everyone, I am Videesh Gudapti and I am the Theta Captain. When I'm not playing Roblox at 12 AM or falling in love with Beabadoobee, I am either grinding math or playing pickleball.">
-        <img src="videeshgudapati.jpg" alt="Videesh Gudapati">
-        <h3>Videesh Gudapati</h3>
-        <p>Theta Captain</p>
-      </div>
-      <div class="team-member" data-intro="Hey Everyone! I am Devshree Pancholy and I am the Secretary. I am a huge Barcelona fan and D1 Daniel Caesar listener. I also love geometry.">
-        <img src="devshreepancholy.jpg" alt="Devshree Pancholy">
-        <h3>Devshree Pancholy</h3>
-        <p>Secretary</p>
-      </div>
-      <div class="team-member" data-intro="Hey everyone! I'm Kaylee Jeon and I am the Co-Historian. I have a genuine love for Math, but when I'm not learning math or listening to Korean music, you can catch me scrolling through baby reels on Instagram.">
-        <img src="kayleejeon.jpg" alt="Kaylee Jeon">
-        <h3>Kaylee Jeon</h3>
-        <p>Co-Historian</p>
-      </div>
-      <div class="team-member" data-intro="Hello Everyone! My name is Haricharan Katamneni and I am the other Co-Historian. When I'm not listening to Bryson Tiller or The Weekend, I am either watching the Denver Nuggets or playing tennis.">
-        <img src="harikatamneni.jpg" alt="Haricharan Katamneni">
-        <h3>Haricharan Katamneni</h3>
-        <p>Co-Historian</p>
-      </div>
+  <div class="team-grid">
+    <div class="team-member" data-intro="Hey everyone, I’m Himank Chhaya and I am super excited to be President! If I’m not listening to Drake or playing basketball, you might catch me writing math problems or practicing the guitar.">
+      <img src="himankchhaya.png" alt="Himank Chhaya">
+      <h3>Himank Chhaya</h3>
+      <p>President & Director</p>
+    </div>
+    <div class="team-member" data-intro="Hello! My name is Ashvin Sinha and I am the Vice President of Org. When I am not doing math or Science Olympiad, I am either watching basketball highlights or playing the piano.">
+      <img src="ashvinsinha.jpg" alt="Ashvin Sinha">
+      <h3>Ashvin Sinha</h3>
+      <p>VP of Organization</p>
+    </div>
+    <div class="team-member" data-intro="Hey guys! I am the one and only Jonathan George and I am the Vice President of Finance. I love solving (aka looking at solutions) for hard math problems.">
+      <img src="jonathangeorge.png" alt="Jonathan George">
+      <h3>Jonathan George</h3>
+      <p>VP of Finance</p>
+    </div>
+    <div class="team-member" data-intro="Hi Everyone! My name is Rakesh Raj and I am the Alpha Captain. As a D1 Lebron Glazer constantly scrolling through reels, Lebron has motivated me to believe that obstacles don't have to stop you.">
+      <img src="rakeshraj.jpg" alt="Rakesh Raj">
+      <h3>Rakesh Raj</h3>
+      <p>Alpha Captain</p>
+    </div>
+    <div class="team-member" data-intro="Hello Everyone, I am Videesh Gudapti and I am the Theta Captain. When I'm not playing Roblox at 12 AM or falling in love with Beabadoobee, I am either grinding math or playing pickleball.">
+      <img src="videeshgudapati.jpg" alt="Videesh Gudapati">
+      <h3>Videesh Gudapati</h3>
+      <p>Theta Captain</p>
+    </div>
+    <div class="team-member" data-intro="Hey Everyone! I am Devshree Pancholy and I am the Secretary. I am a huge Barcelona fan and D1 Daniel Caesar listener. I also love geometry.">
+      <img src="devshreepancholy.jpg" alt="Devshree Pancholy">
+      <h3>Devshree Pancholy</h3>
+      <p>Secretary</p>
+    </div>
+    <div class="team-member" data-intro="Hey everyone! I'm Kaylee Jeon and I am the Co-Historian. I have a genuine love for Math, but when I'm not learning math or listening to Korean music, you can catch me scrolling through baby reels on Instagram.">
+      <img src="kayleejeon.jpg" alt="Kaylee Jeon">
+      <h3>Kaylee Jeon</h3>
+      <p>Co-Historian</p>
+    </div>
+    <div class="team-member" data-intro="Hello Everyone! My name is Haricharan Katamneni and I am the other Co-Historian. When I'm not listening to Bryson Tiller or The Weekend, I am either watching the Denver Nuggets or playing tennis.">
+      <img src="harikatamneni.jpg" alt="Haricharan Katamneni">
+      <h3>Haricharan Katamneni</h3>
+      <p>Co-Historian</p>
     </div>
   </div>
 
-  <!-- Modal -->
   <div id="modalOverlay">
     <div id="modalContent"></div>
   </div>
 
   <script>
-    // 1) Duplicate for infinite loop
-    const track = document.getElementById('track');
-    track.innerHTML += track.innerHTML;
-
-    // 2) Smooth infinite scroll (R→L)
-    const slider = document.getElementById('slider');
-    const speed  = 0.5;
-    function animate() {
-      slider.scrollLeft += speed;
-      if (slider.scrollLeft >= track.scrollWidth / 2) {
-        slider.scrollLeft = 0;
-      }
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // 3) Modal with intros
     const overlay = document.getElementById('modalOverlay');
     const content = document.getElementById('modalContent');
+
     document.querySelectorAll('.team-member').forEach(card => {
       card.addEventListener('click', () => {
         content.innerHTML = '';
@@ -258,6 +236,7 @@
         overlay.classList.add('active');
       });
     });
+
     overlay.addEventListener('click', e => {
       if (e.target === overlay) overlay.classList.remove('active');
     });
