@@ -26,7 +26,10 @@
       background: #fff; padding: 1rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    nav { max-width: 1200px; margin:auto; display:flex; justify-content: space-between; }
+    nav {
+      max-width: 1200px; margin:auto;
+      display:flex; justify-content: space-between; align-items:center;
+    }
     nav a {
       text-decoration: none; color: var(--text);
       margin: 0 .75rem; font-weight:600;
@@ -37,7 +40,10 @@
       width:0; height:2px; background:var(--primary);
       transition: width .3s;
     }
-    nav a:hover::after { width:100%; }
+    nav a:hover::after,
+    nav a.active::after {
+      width:100%;
+    }
     .container {
       max-width: 800px; margin: 6rem auto; padding: 0 1rem; text-align:center;
     }
@@ -61,11 +67,11 @@
 <body>
   <header data-aos="fade-down">
     <nav>
-      <div><strong>Rickards Invitational</strong></div>
+      <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
       <div>
-        <a href="index.html">Home</a>
         <a href="registration.html">Registration</a>
-        <a href="past-tests.html">Past Tests</a>
+        <a href="past-tests.html" class="active">Past Tests</a>
+        <a href="team.html">Team</a>
       </div>
     </nav>
   </header>
@@ -85,6 +91,7 @@
     </div>
   </div>
 
+  <!-- AOS Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });

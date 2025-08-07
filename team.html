@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team — Rickards Invitational</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary: #0057ff;
+      --light: #f5f7fa;
+      --text: #333;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--light);
+      color: var(--text);
+    }
+
+    /* Sticky Nav */
+    header {
+      position: sticky; top: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    nav {
+      max-width: 1200px; margin: auto;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem;
+    }
+    nav a {
+      text-decoration: none; color: var(--text);
+      margin: 0 1rem; font-weight: 600; position: relative;
+    }
+    nav a::after {
+      content: ''; position: absolute; left: 0; bottom: -4px;
+      width: 0; height: 2px; background: var(--primary);
+      transition: width .3s;
+    }
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    /* Page Title */
+    .team-header {
+      text-align: center;
+      margin: 2rem 0 1rem;
+    }
+    .team-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--primary);
+    }
+
+    /* Slider */
+    .slider {
+      overflow: hidden;
+      padding-bottom: 4rem;
+    }
+    .slider-content {
+      display: flex;
+      flex-wrap: nowrap;
+    }
+
+    /* Team Card */
+    .team-member {
+      flex: 0 0 auto;
+      width: 320px;
+      margin-right: 2rem;
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .team-member img {
+      width: 140px; height: 140px;
+      object-fit: cover; border-radius: 50%;
+      margin-bottom: 1.5rem;
+    }
+    .team-member h3 {
+      margin-bottom: .5rem;
+      color: var(--primary);
+      font-size: 1.75rem;
+    }
+    .team-member p {
+      font-size: 1.1rem; color: #555;
+    }
+
+    /* Modal */
+    #modalOverlay {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center; align-items: center;
+      z-index: 10000;
+    }
+    #modalOverlay.active {
+      display: flex;
+    }
+    #modalContent {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 90%;
+      max-height: 90%;
+      overflow-y: auto;
+      text-align: center;
+    }
+    .modal-view {
+      width: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+    .modal-view img {
+      width: 200px; height: 200px;
+      margin-bottom: 1rem;
+    }
+    .modal-view h3 {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .modal-view p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-intro {
+      font-size: 1rem;
+      color: #333;
+      line-height: 1.5;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
+      <div>
+        <a href="registration.html">Registration</a>
+        <a href="past-tests.html">Past Tests</a>
+        <a href="team.html" class="active">Team</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Title -->
+  <div class="team-header">
+    <h1>TEAM</h1>
+  </div>
+
+  <!-- Slider -->
+  <div class="slider" id="slider">
+    <div class="slider-content" id="track">
+      <!-- Each card now has a data-intro attribute -->
+      <div class="team-member" data-intro="Hey everyone, I’m Himank Chhaya and I am super excited to be President!  If I’m not listening to Drake or playing basketball, you might catch me writing math problems or practicing the guitar.">
+        <img src="himankchhaya.png" alt="Himank Chhaya">
+        <h3>Himank Chhaya</h3>
+        <p>President & Director</p>
+      </div>
+      <div class="team-member" data-intro="Hello! My name is Ashvin Sinha and I am the Vice President of Org. When I am not doing math or Science Olympiad, I am either watching basketball highlights or playing the piano.
+">
+        <img src="ashvinsinha.jpg" alt="Ashvin Sinha">
+        <h3>Ashvin Sinha</h3>
+        <p>VP of Organization</p>
+      </div>
+      <div class="team-member" data-intro="Hey guys! I am the one and only Jonathan George and I am the Vice President of Finance. I love solving (aka looking at solutions) for hard math problems.">
+        <img src="jonathangeorge.png" alt="Jonathan George">
+        <h3>Jonathan George</h3>
+        <p>VP of Finance</p>
+      </div>
+      <div class="team-member" data-intro="Hi Everyone! My name is Rakesh Raj and I am the Alpha Captain. As a D1 Lebron Glazer constantly scrolling through reels, Lebron has motivated me to believe that obstacles don't have to stop you.">
+        <img src="rakeshraj.jpg" alt="Rakesh Raj">
+        <h3>Rakesh Raj</h3>
+        <p>Alpha Captain</p>
+      </div>
+      <div class="team-member" data-intro="Hello Everyone, I am Videesh Gudapti and I am the Theta Captain. When I'm not playing Roblox at 12 AM or falling in love with Beabadoobee, I am either grinding math or playing pickleball.">
+        <img src="videeshgudapati.jpg" alt="Videesh Gudapati">
+        <h3>Videesh Gudapati</h3>
+        <p>Theta Captain</p>
+      </div>
+      <div class="team-member" data-intro="Hey Everyone! I am Devshree Pancholy and I am the Secretary. I am a huge Barcelona fan and D1 Daniel Caesar listener. I also love geometry.">
+        <img src="devshreepancholy.jpg" alt="Devshree Pancholy">
+        <h3>Devshree Pancholy</h3>
+        <p>Secretary</p>
+      </div>
+      <div class="team-member" data-intro="Hey everyone! I'm Kaylee Jeon and I am the Co-Historian. I have a genuine love for Math, but when I'm not learning math or listening to Korean music, you can catch me scrolling through baby reels on Instagram.">
+        <img src="kayleejeon.jpg" alt="Kaylee Jeon">
+        <h3>Kaylee Jeon</h3>
+        <p>Co-Historian</p>
+      </div>
+      <div class="team-member" data-intro="Hello Everyone! My name is Haricharan Katamneni and I am the other Co-Historian. When I'm not listening to Bryson Tiller or The Weekend, I am either watching the Denver Nuggets or playing tennis.">
+        <img src="harikatamneni.jpg" alt="Haricharan Katamneni">
+        <h3>Haricharan Katamneni</h3>
+        <p>Co-Historian</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalOverlay">
+    <div id="modalContent"></div>
+  </div>
+
+  <script>
+    // 1) Clone for infinite loop
+    const track = document.getElementById('track');
+    track.innerHTML += track.innerHTML;
+
+    // 2) Infinite scroll
+    const slider = document.getElementById('slider');
+    const speed  = 0.5;
+    function animate() {
+      slider.scrollLeft += speed;
+      if (slider.scrollLeft >= track.scrollWidth / 2) {
+        slider.scrollLeft = 0;
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // 3) Modal with intros
+    const modalOverlay = document.getElementById('modalOverlay');
+    const modalContent = document.getElementById('modalContent');
+    document.querySelectorAll('.team-member').forEach(card => {
+      card.addEventListener('click', () => {
+        modalContent.innerHTML = '';      // clear
+        const clone = card.cloneNode(true);
+        clone.classList.add('modal-view');
+        // add intro paragraph
+        const introText = card.dataset.intro;
+        const introP = document.createElement('p');
+        introP.className = 'modal-intro';
+        introP.textContent = introText;
+        modalContent.appendChild(clone);
+        modalContent.appendChild(introP);
+        modalOverlay.classList.add('active');
+      });
+    });
+    // click outside to close
+    modalOverlay.addEventListener('click', e => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
