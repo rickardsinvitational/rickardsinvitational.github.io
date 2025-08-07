@@ -7,6 +7,8 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <!-- Animate On Scroll CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
 
   <style>
     :root {
@@ -20,8 +22,6 @@
       background: var(--light);
       color: var(--text);
     }
-
-    /* Sticky Nav */
     header {
       position: sticky; top: 0;
       background: rgba(255,255,255,0.95);
@@ -47,8 +47,6 @@
     nav a.active::after {
       width: 100%;
     }
-
-    /* Page Title */
     .team-header {
       text-align: center;
       margin: 2rem 0 1rem;
@@ -58,8 +56,6 @@
       color: var(--primary);
       margin: 0;
     }
-
-    /* Grid Layout */
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -68,8 +64,6 @@
       margin: 0 auto 4rem;
       padding: 0 1rem;
     }
-
-    /* Team Card */
     .team-member {
       background: #fff;
       padding: 2.5rem;
@@ -87,10 +81,8 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     }
     .team-member img {
-      width: 180px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 50%;
+      width: 180px; height: 180px;
+      object-fit: cover; border-radius: 50%;
       margin-bottom: 1.5rem;
     }
     .team-member h3 {
@@ -103,8 +95,6 @@
       color: #555;
       flex-shrink: 0;
     }
-
-    /* Modal */
     #modalOverlay {
       position: fixed; top: 0; left: 0;
       width: 100vw; height: 100vh;
@@ -113,45 +103,33 @@
       justify-content: center; align-items: center;
       z-index: 10000;
     }
-    #modalOverlay.active {
-      display: flex;
-    }
+    #modalOverlay.active { display: flex; }
     #modalContent {
       background: #fff;
       padding: 2rem;
       border-radius: 12px;
-      /* make it skinnier: */
-      width: 90%;
-      max-width: 500px;
+      width: 90%; max-width: 500px;
       margin: 0 1rem;
-      max-height: 90%;
-      overflow-y: auto;
+      max-height: 90%; overflow-y: auto;
       text-align: center;
     }
-    .modal-view {
-      margin-bottom: 1rem;
-    }
+    .modal-view { margin-bottom: 1rem; }
     .modal-view img {
       width: 220px; height: 220px;
       object-fit: cover; border-radius: 50%;
       margin-bottom: 1rem;
     }
     .modal-view h3 {
-      font-size: 2.5rem;
-      margin-bottom: .5rem;
+      font-size: 2.5rem; margin-bottom: .5rem;
       color: var(--primary);
     }
     .modal-view p {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
+      font-size: 1.25rem; margin-bottom: 1rem;
     }
     .modal-intro {
-      font-size: 1.1rem;
-      color: #333;
+      font-size: 1.1rem; color: #333;
       line-height: 1.6;
-      /* allow wrapping onto multiple lines */
-      white-space: normal;
-      word-break: break-word;
+      white-space: normal; word-break: break-word;
       text-align: center;
     }
   </style>
@@ -168,11 +146,12 @@
     </nav>
   </header>
 
-  <div class="team-header">
+  <div class="team-header" data-aos="flip-left">
     <h1>TEAM</h1>
   </div>
 
-  <div class="team-grid">
+  <div class="team-grid" data-aos="flip-left" data-aos-delay="200">
+    <!-- members unchanged -->
     <div class="team-member" data-intro="Hey everyone, I’m Himank Chhaya and I am super excited to be President! If I’m not listening to Drake or playing basketball, you might catch me writing math problems or practicing the guitar.">
       <img src="himankchhaya.png" alt="Himank Chhaya">
       <h3>Himank Chhaya</h3>
@@ -219,7 +198,11 @@
     <div id="modalContent"></div>
   </div>
 
+  <!-- Animate on Scroll JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
+    AOS.init({ duration: 600, once: true });
+
     const overlay = document.getElementById('modalOverlay');
     const content = document.getElementById('modalContent');
 
