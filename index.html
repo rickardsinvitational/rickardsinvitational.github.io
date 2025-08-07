@@ -107,11 +107,51 @@
     }
 
     /*–– Intro Block ––*/
-    .intro p {
+    .intro {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: stretch; /* stretch panels equally */
+    }
+    .director-welcome,
+    .guest-speaker {
       background: #fff;
-      padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 2rem;
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+    }
+    .director-welcome h2,
+    .guest-speaker h2 {
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .director-welcome p,
+    .guest-speaker p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+    .guest-speaker .photo-placeholder {
+      width: 100%;
+      padding-bottom: 75%;
+      background: #eee;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .guest-speaker .photo-placeholder img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%; /* shift head down */
     }
 
     /*–– Why Us Cards ––*/
@@ -182,11 +222,24 @@
     <div class="scroll-down">⌄</div>
   </section>
 
-  <!-- Intro -->
+  <!-- Intro with side-by-side panels -->
   <section class="intro" data-aos="fade-up">
-    <p>
-      The James S. Rickards Fall Invitational draws over 1,000 competitors from 45+ schools. Join us in-person on Saturday, November 8th, 2025, or compete nationwide via our mail-in division. After tests are submitted, results will be revealed in an online ceremony. Check your level’s Competition Handbook below, or email us at <a href="mailto:rickardsinvitational@gmail.com">rickardsinvitational@gmail.com</a>.
-    </p>
+    <div class="director-welcome">
+      <h2>Welcome from the Director</h2>
+      <p>Dear Competitors,</p>
+      <p>It is my great pleasure to welcome you to the 2025 James S. Rickards Fall Invitational. Each year, our student-run team works tirelessly to design problems that promote the joy of mathematics.</p>
+      <p>We’re thrilled to host over 1,000 participants in person on Saturday, November 8th, and to open our mail-in division to schools nationwide. After the tests are submitted, we’ll reveal the results and honor the top performers.</p>
+      <p>Thank you for your passion and dedication. I look forward to an unforgettable day of problem-solving.</p>
+      <p>Sincerely,<br>Himank Chhaya<br>Director, Rickards Math Invitational</p>
+    </div>
+
+    <div class="guest-speaker">
+      <h2>Guest Speaker</h2>
+      <div class="photo-placeholder">
+        <img src="poshenloh.jpg" alt="Dr. Po-Shen Loh">
+      </div>
+      <p>Dr. Po-Shen Loh is an American mathematician and the Dr. Henry L. Alder Professor at Carnegie Mellon University, best known for coaching the U.S. IMO team to multiple gold medals from 2013–2023. He’s also the founder of Expii, a free online platform that uses adaptive problem-solving to make math learning accessible worldwide.</p>
+    </div>
   </section>
 
   <!-- Why Us -->
