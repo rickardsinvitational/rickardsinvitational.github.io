@@ -4,76 +4,48 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Online Registration - Rickards Invitational</title>
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
-  <!-- Animate.css & AOS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
   <style>
-    :root {
-      --primary: #0057ff;
-      --light: #f5f7fa;
-      --text: #333;
-    }
-    * { box-sizing: border-box; margin:0; padding:0; }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--light);
-      color: var(--text);
-      text-align: center;
-    }
-    header {
-      position: sticky; top:0;
-      background: #fff; padding:1rem;
-      box-shadow:0 2px 5px rgba(0,0,0,0.1);
-    }
-    nav {
-      max-width:1200px; margin:auto;
-      display:flex; justify-content:space-between; align-items:center;
-    }
-    nav a {
-      text-decoration:none; color:var(--text);
-      margin:0 .75rem; font-weight:600;
-      position:relative;
-    }
-    nav a::after {
-      content:''; position:absolute; left:0; bottom:-3px;
-      width:0; height:2px; background:var(--primary);
-      transition:width .3s;
-    }
-    nav a:hover::after,
-    nav a.active::after {
-      width:100%;
-    }
-    .container {
-      max-width:800px; margin:6rem auto; padding:0 1rem;
-    }
-    h1 { font-size:2.5rem; margin-bottom:1rem; }
-    p { margin-bottom:1.5rem; color:#555; }
-    .boxes {
-      display: grid; grid-template-columns: 1fr; gap:2rem;
-    }
-    @media(min-width:600px) {
-      .boxes { grid-template-columns: repeat(2,1fr); }
-    }
-    .box {
-      background:#fff; padding:2rem; border-radius:8px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.1);
-      transition:transform .3s;
-    }
-    .box:hover { transform:translateY(-5px); }
-    .box h2 { margin-bottom:1rem; color:var(--primary); }
-    .box a {
-      display:inline-block; margin-top:1rem;
-      padding:.75rem 1.5rem; background:var(--primary);
-      color:#fff; border-radius:4px; text-decoration:none;
-      font-weight:600; transition:background .3s;
-    }
-    .box a:hover { background:#0041cc; }
+    :root { --primary:#0057ff; --light:#f5f7fa; --text:#333; --muted:#6b7280; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Montserrat',sans-serif;background:var(--light);color:var(--text);text-align:center}
+    header{position:sticky;top:0;background:#fff;padding:1rem;box-shadow:0 2px 5px rgba(0,0,0,.1);z-index:5}
+    nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+    nav a{text-decoration:none;color:var(--text);margin:0 .75rem;font-weight:600;position:relative}
+    nav a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--primary);transition:width .3s}
+    nav a:hover::after,nav a.active::after{width:100%}
+
+    .container{max-width:1000px;margin:3rem auto 6rem;padding:0 1rem;text-align:left}
+    h1{font-size:2.4rem;margin-bottom:1rem;text-align:center}
+    p.lead{text-align:center;margin-bottom:2rem;color:#555}
+
+    .tabs { display:flex; justify-content:center; gap:.75rem; margin: 0 auto 1.25rem; flex-wrap:wrap; }
+    .tab-btn { appearance:none; border:1px solid #d1d5db; background:#fff; color:#111827;
+      padding:.6rem 1rem; border-radius:8px; font-weight:700; cursor:pointer; transition: all .2s ease; }
+    .tab-btn:hover { transform: translateY(-1px); box-shadow:0 2px 10px rgba(0,0,0,.06); }
+    .tab-btn.active { background: var(--primary); border-color: var(--primary); color:#fff; }
+
+    form label{display:block;margin:.85rem 0 .35rem;font-weight:700}
+    form input,form textarea{width:100%;padding:.65rem .75rem;border:1px solid #cfd4dc;border-radius:8px;background:#fff}
+    textarea{min-height:90px}
+    .grid{display:grid;gap:1.25rem}
+    @media(min-width:820px){ .grid-2{grid-template-columns:1fr 1fr} }
+
+    button.submit{margin-top:1.25rem;padding:.85rem 1.5rem;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer}
+    button.submit:disabled{opacity:.6;cursor:default}
+    .formMsg{margin-top:1rem;font-weight:700}
+
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.08);padding:1.25rem}
+    .group-title{margin-top:1.25rem;margin-bottom:.25rem;color:#0b3cc1}
+    .hidden{display:none}
+    .section-title { display:flex; align-items:center; gap:.5rem; color:#6b7280; font-size:.95rem; margin:.25rem 0 1rem; }
   </style>
 </head>
 <body>
-  <header data-aos="fade-down">
+  <header>
     <nav>
       <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
       <div>
@@ -84,34 +56,359 @@
     </nav>
   </header>
 
-  <div class="container" data-aos="fade-up">
+  <section class="container">
     <h1>Online Registration</h1>
-    <p>
-      IMPORTANT: Read your level’s Competition Handbook on the Home page first. <br> Questions? Email <a href="mailto:rickardsinvitational@gmail.com">rickardsinvitational@gmail.com</a>.
+    <p class="lead">
+      IMPORTANT: Read your level’s Competition Handbook on the Home page first. <br>
+      Questions? Email <a href="mailto:rickardsinvitational@gmail.com">rickardsinvitational@gmail.com</a>.
     </p>
-    <div class="boxes">
-      <div class="box animate__animated animate__fadeInLeft">
-        <h2>Elementary School</h2>
-        <p>Register for the elementary school division here.</p>
-        <a href="https://forms.gle/zTWXcgYmcFBdaYo2A" target="_blank">Register Now</a>
-      </div>
-      <div class="box animate__animated animate__fadeInRight" data-aos="fade-up" data-aos-delay="100">
-        <h2>Middle/High (In-Person)</h2>
-        <p>Compete in person at this year’s invitational.</p>
-        <a href="https://forms.gle/zEEQMSNqvSNSQYu5" target="_blank">Register Now</a>
-      </div>
-      <div class="box animate__animated animate__fadeInLeft" data-aos="fade-up" data-aos-delay="200">
-        <h2>Middle/High (Mail-In)</h2>
-        <p>Submit tests remotely and join our mail-in division.</p>
-        <a href="https://forms.gle/4rkQwsv6FqV3uNsU7" target="_blank">Register Now</a>
-      </div>
-    </div>
-  </div>
 
-  <!-- AOS Script -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <div class="tabs" role="tablist" aria-label="Registration type">
+      <button class="tab-btn active" data-target="form-middle"  role="tab" aria-selected="true">Middle/High (In-Person)</button>
+      <button class="tab-btn"          data-target="form-elementary" role="tab" aria-selected="false">Elementary</button>
+      <button class="tab-btn"          data-target="form-mailin" role="tab" aria-selected="false">Mail-In</button>
+    </div>
+
+    <!-- Middle/High -->
+    <form id="form-middle" class="card regForm" data-regtype="Middle/High (In-Person)">
+      <div class="section-title">Registration • Middle/High</div>
+      <div class="grid grid-2">
+        <div><label>Coach Email</label><input type="email" name="email" required placeholder="coach@school.edu"></div>
+        <div><label>School Name</label><input type="text" name="schoolName" required placeholder="James S. Rickards HS"></div>
+        <div>
+          <label>School Code (4 digits)</label>
+          <input type="text" name="schoolCode" inputmode="numeric" autocomplete="off" maxlength="4"
+                 pattern="^[0-9]{4}$" title="Enter exactly 4 digits (e.g., 1400)" required placeholder="e.g. 1400"
+                 oninput="this.value=this.value.replace(/\\D/g,'').slice(0,4)">
+        </div>
+        <div><label>Boxes of Pizza ($15 each)</label><input type="number" name="pizzaBoxes" min="0" step="1" value="0"></div>
+      </div>
+
+      <h3 class="group-title">Student Names (one per line, leave blank if none)</h3>
+      <div class="grid grid-2">
+        <div><label>Prealgebra </label><textarea name="prealgebra" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Algebra 1</label><textarea name="algebra1" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Geometry </label><textarea name="geometry" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Algebra 2 </label><textarea name="algebra2" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Precalculus </label><textarea name="precalc" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Calculus </label><textarea name="calculus" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Statistics </label><textarea name="stats" placeholder="Student A&#10;Student B"></textarea></div>
+      </div>
+      <button class="submit" type="submit">Register Now</button>
+      <div class="formMsg" aria-live="polite"></div>
+    </form>
+
+    <!-- Elementary -->
+    <form id="form-elementary" class="card regForm hidden" data-regtype="Elementary">
+      <div class="section-title">Registration • Elementary</div>
+      <div class="grid grid-2">
+        <div><label>Coach Email</label><input type="email" name="email" required placeholder="coach@school.edu"></div>
+        <div><label>School Name</label><input type="text" name="schoolName" required placeholder="James S. Rickards ES"></div>
+        <div>
+          <label>School Code (4 digits)</label>
+          <input type="text" name="schoolCode" inputmode="numeric" autocomplete="off" maxlength="4"
+                 pattern="^[0-9]{4}$" title="Enter exactly 4 digits (e.g., 1400)" required placeholder="e.g. 1400"
+                 oninput="this.value=this.value.replace(/\\D/g,'').slice(0,4)">
+        </div>
+        <div><label>Boxes of Pizza ($15 each)</label><input type="number" name="pizzaBoxes" min="0" step="1" value="0"></div>
+      </div>
+      <h3 class="group-title">Student Names (one per line, leave blank if none)</h3>
+      <div class="grid grid-2">
+        <div><label>4th Grade</label><textarea name="grade4" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>5th Grade</label><textarea name="grade5" placeholder="Student A&#10;Student B"></textarea></div>
+      </div>
+      <button class="submit" type="submit">Register Now</button>
+      <div class="formMsg" aria-live="polite"></div>
+    </form>
+
+    <!-- Mail-In (no pizza) -->
+    <form id="form-mailin" class="card regForm hidden" data-regtype="Mail-In">
+      <div class="section-title">Registration • Mail-In</div>
+      <div class="grid grid-2">
+        <div><label>Coach Email</label><input type="email" name="email" required placeholder="coach@school.edu"></div>
+        <div><label>School Name</label><input type="text" name="schoolName" required placeholder="Your School"></div>
+        <div>
+          <label>School Code (4 digits)</label>
+          <input type="text" name="schoolCode" inputmode="numeric" autocomplete="off" maxlength="4"
+                 pattern="^[0-9]{4}$" title="Enter exactly 4 digits (e.g., 1400)" required placeholder="e.g. 1400"
+                 oninput="this.value=this.value.replace(/\\D/g,'').slice(0,4)">
+        </div>
+      </div>
+      <h3 class="group-title">Student Names (one per line, leave blank if none)</h3>
+      <div class="grid grid-2">
+        <div><label>Prealgebra </label><textarea name="prealgebra" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Algebra 1</label><textarea name="algebra1" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Geometry </label><textarea name="geometry" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Algebra 2 </label><textarea name="algebra2" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Precalculus </label><textarea name="precalc" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Calculus </label><textarea name="calculus" placeholder="Student A&#10;Student B"></textarea></div>
+        <div><label>Statistics </label><textarea name="stats" placeholder="Student A&#10;Student B"></textarea></div>
+      </div>
+      <button class="submit" type="submit">Register Now</button>
+      <div class="formMsg" aria-live="polite"></div>
+    </form>
+
+  </section>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- jsPDF -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <!-- Firebase (Compat for simplicity) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
   <script>
-    AOS.init({ duration: 700, once: true });
+    // ===== EmailJS =====
+    const EMAILJS_PUBLIC_KEY = 'KgZnfBzEG6IncDYpY';
+    const EMAILJS_SERVICE_ID = 'service_bxa1tb6';
+    const TEMPLATE_MS     = 'template_wquzcmo';     // Middle/High
+    const TEMPLATE_ELEM   = 'template_i74d01s';     // Elementary
+    const TEMPLATE_MAILIN = 'template_u7st0fh';     // Mail-In
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    // ===== Firebase =====
+    // TODO: paste your firebaseConfig from Firebase console:
+    const firebaseConfig = {
+      apiKey: "AIzaSyBKcHAXPtldFng5VEaisq432qhpJuj_7o0",
+      authDomain: "rickards-invite-registration.firebaseapp.com",
+      projectId: "rickards-invite-registration",
+      storageBucket: "rickards-invite-registration.firebasestorage.app",
+      messagingSenderId: "1:929284640320:web:96db3e0610f3da6b9159a5",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // ===== Tabs =====
+    const btns = [...document.querySelectorAll('.tab-btn')];
+    const forms = [...document.querySelectorAll('.regForm')];
+    btns.forEach(b => b.addEventListener('click', () => {
+      btns.forEach(x => x.classList.toggle('active', x === b));
+      forms.forEach(f => f.classList.toggle('hidden', f.id !== b.dataset.target));
+      const active = document.getElementById(b.dataset.target);
+      const first = active.querySelector('input, textarea, button');
+      first && first.focus();
+    }));
+
+    // ===== Division defs per type =====
+    function getDefs(regType) {
+      if (regType === 'Elementary') {
+        return [
+          { field:'grade4', code:'90', label:'4th Grade' },
+          { field:'grade5', code:'90', label:'5th Grade' },
+        ];
+      }
+      return [
+        { field:'prealgebra', code:'00', label:'Prealgebra'   },
+        { field:'algebra1',   code:'10', label:'Algebra 1'    },
+        { field:'geometry',   code:'20', label:'Geometry'     },
+        { field:'algebra2',   code:'30', label:'Algebra 2'    },
+        { field:'precalc',    code:'40', label:'Precalculus'  },
+        { field:'calculus',   code:'50', label:'Calculus'     },
+        { field:'stats',      code:'60', label:'Statistics'   },
+      ];
+    }
+    const pad3 = n => ('000' + n).slice(-3);
+
+    // ===== Global middle-ID allocator (Firestore transaction) =====
+    async function reserveMiddleBlock(count, meta) {
+      if (count <= 0) throw new Error('No students to allocate.');
+      if (count > 999) throw new Error('Count too large for 3-digit range.');
+      const counterRef = db.collection('rmi').doc('global');
+
+      let startIndex = 0;
+      await db.runTransaction(async (tx) => {
+        const snap = await tx.get(counterRef);
+        let next = 1;
+        if (snap.exists && Number.isInteger(snap.data().next)) {
+          next = snap.data().next;
+        }
+        if (next + count - 1 > 999) {
+          throw new Error('Global IDs would exceed 999. Please contact organizers.');
+        }
+        startIndex = next;
+        tx.set(counterRef, {
+          next: next + count,
+          updated: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+
+        // optional audit record
+        const regRef = db.collection('rmi_registrations').doc();
+        tx.set(regRef, {
+          ts: firebase.firestore.FieldValue.serverTimestamp(),
+          start: startIndex, end: startIndex + count - 1,
+          ...meta
+        });
+      });
+      return startIndex; // 1-based
+    }
+
+    // ===== Attach submit logic to each form =====
+    document.querySelectorAll('.regForm').forEach(formEl => {
+      formEl.addEventListener('submit', (e) => handleSubmit(e, formEl.dataset.regtype));
+    });
+
+    async function handleSubmit(e, regType) {
+      e.preventDefault();
+      const formEl = e.target;
+      const defs = getDefs(regType);
+      const btn = formEl.querySelector('button.submit');
+      const msg = formEl.querySelector('.formMsg');
+      btn.disabled = true; msg.style.color=''; msg.textContent = 'Generating IDs and Invoice...';
+
+      try {
+        const form = new FormData(formEl);
+        const email      = (form.get('email')||'').trim();
+        const schoolName = (form.get('schoolName')||'').trim();
+        const schoolCode = (form.get('schoolCode')||'').trim();
+        const pizzaBoxes = parseInt(form.get('pizzaBoxes')||'0', 10) || 0; // Mail-In has none → 0
+
+        if (!/^\d{4}$/.test(schoolCode)) throw new Error('School code must be exactly 4 digits.');
+
+        // Build student list
+        const students = [];
+        defs.forEach(def => {
+          const lines = (form.get(def.field) || '')
+            .split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+          lines.forEach(name => students.push({ name, division:def.label, testCode:def.code, field:def.field }));
+        });
+        if (!students.length) throw new Error('Please enter at least one student name.');
+
+        // === Reserve a global contiguous block of middle 3-digit numbers ===
+        const start = await reserveMiddleBlock(students.length, {
+          schoolCode, schoolName, regType, count: students.length
+        });
+
+        // Assign middle digits from the reserved block
+        students.forEach((s, i) => { s.id = `${schoolCode}${pad3(start + i)}${s.testCode}`; });
+
+        // Pricing
+        const pricePerStudent = 10, pricePerPizza = 15;
+        const countsByField = {}; defs.forEach(d => countsByField[d.field] = 0);
+        students.forEach(s => { countsByField[s.field]++; });
+
+        let total = 0;
+        const costsByField = {};
+        defs.forEach(d => { const c = countsByField[d.field]; const cost = c*pricePerStudent; costsByField[d.field]=cost; total+=cost; });
+        let pizzaCost = 0;
+        if (regType !== 'Mail-In' && pizzaBoxes > 0) { pizzaCost = pizzaBoxes*pricePerPizza; total += pizzaCost; }
+
+        // PDFs
+        const studentPdf = makeStudentPDF({ schoolName, schoolCode, regType, students });
+        const invoicePdf = makeInvoicePDF({ schoolName, regType, students, pizzaBoxes: (regType==='Mail-In'?0:pizzaBoxes) });
+        const studentBase64 = studentPdf.output('datauristring').split(',')[1];
+        const invoiceBase64 = invoicePdf.output('datauristring').split(',')[1];
+
+        const idsText = students.map(s => `${s.name} — ${s.id} (${s.division})`).join('\n');
+
+        // Pick template + params
+        let templateId = TEMPLATE_MS;
+        let params = {
+          to_email: email,
+          school: schoolName,
+          school_code: schoolCode,
+          reg_type: regType,
+          ids_text: idsText,
+          total_due: total,
+          attachments: [
+            { name: `StudentIDs_${schoolCode}.pdf`, data: studentBase64, content_type: 'application/pdf' },
+            { name: `Invoice_${schoolCode}.pdf`,    data: invoiceBase64, content_type: 'application/pdf' }
+          ]
+        };
+
+        if (regType === 'Elementary') {
+          templateId = TEMPLATE_ELEM;
+          params = {
+            ...params,
+            count_grade4: countsByField['grade4'] || 0, cost_grade4: costsByField['grade4'] || 0,
+            count_grade5: countsByField['grade5'] || 0, cost_grade5: costsByField['grade5'] || 0,
+            pizza_boxes:  pizzaBoxes, pizza_cost: pizzaCost
+          };
+        } else if (regType === 'Mail-In') {
+          templateId = TEMPLATE_MAILIN;
+          params = {
+            ...params,
+            count_prealgebra: countsByField['prealgebra'] || 0, cost_prealgebra: costsByField['prealgebra'] || 0,
+            count_algebra1:   countsByField['algebra1']   || 0, cost_algebra1:  costsByField['algebra1']   || 0,
+            count_geometry:   countsByField['geometry']   || 0, cost_geometry:  costsByField['geometry']   || 0,
+            count_algebra2:   countsByField['algebra2']   || 0, cost_algebra2:  costsByField['algebra2']   || 0,
+            count_precalc:    countsByField['precalc']    || 0, cost_precalc:   costsByField['precalc']    || 0,
+            count_calculus:   countsByField['calculus']   || 0, cost_calculus:  costsByField['calculus']   || 0,
+            count_stats:      countsByField['stats']      || 0, cost_stats:     costsByField['stats']      || 0
+          };
+        } else {
+          // Middle/High
+          params = {
+            ...params,
+            count_prealgebra: countsByField['prealgebra'] || 0, cost_prealgebra: costsByField['prealgebra'] || 0,
+            count_algebra1: countsByField['algebra1'] || 0, cost_algebra1: costsByField['algebra1'] || 0,
+            count_geometry: countsByField['geometry'] || 0, cost_geometry: costsByField['geometry'] || 0,
+            count_algebra2: countsByField['algebra2'] || 0, cost_algebra2: costsByField['algebra2'] || 0,
+            count_precalc: countsByField['precalc'] || 0, cost_precalc: costsByField['precalc'] || 0,
+            count_calculus: countsByField['calculus'] || 0, cost_calculus: costsByField['calculus'] || 0,
+            count_stats: countsByField['stats'] || 0, cost_stats: costsByField['stats'] || 0,
+            pizza_boxes: pizzaBoxes, pizza_cost: pizzaCost
+          };
+        }
+
+        await emailjs.send(EMAILJS_SERVICE_ID, templateId, params);
+        msg.style.color = 'green';
+        msg.textContent = '✅ Sent! Check your inbox for the Student IDs and Invoice.';
+        formEl.reset();
+      } catch (err) {
+        console.error(err);
+        msg.style.color = 'red';
+        msg.textContent = '❌ ' + (err.message || 'Failed to send. Please try again.');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // ===== PDFs =====
+    function makeStudentPDF({ schoolName, schoolCode, regType, students }) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit:'pt', format:'letter' });
+      const margin = 54, line = 18; let y = margin;
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+      doc.text('Rickards Invitational — Student IDs', margin, y); y += 22;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(12);
+      doc.text(`School: ${schoolName}   |   Code: ${schoolCode}   |   Type: ${regType}`, margin, y); y += 18;
+      doc.setFont('helvetica', 'bold'); doc.text('Name', margin, y);
+      doc.text('Division', margin + 260, y); doc.text('ID', margin + 420, y); y += 10;
+      doc.setLineWidth(0.5); doc.line(margin, y, 612 - margin, y); y += 14;
+      doc.setFont('helvetica', 'normal');
+      students.forEach(s => { if (y > 760) { doc.addPage(); y = margin; }
+        doc.text(s.name, margin, y); doc.text(s.division, margin+260, y); doc.text(s.id, margin+420, y); y += line + 4; });
+      return doc;
+    }
+
+    function makeInvoicePDF({ schoolName, regType, students, pizzaBoxes }) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ unit:'pt', format:'letter' });
+      const margin = 54, gap = 18; let y = margin;
+      const pricePerStudent = 10, pricePerPizza = 15;
+      const counts = {}; students.forEach(s => counts[s.division] = (counts[s.division] || 0) + 1);
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(18);
+      doc.text('Rickards Invitational — Invoice', margin, y); y += 22;
+      doc.setFont('helvetica', 'normal'); doc.setFontSize(12);
+      doc.text(`School: ${schoolName}`, margin, y); y += 14;
+      doc.text(`Registration Type: ${regType}`, margin, y); y += 14;
+      doc.text(`Date: ${new Date().toLocaleDateString()}`, margin, y); y += 14;
+      doc.setLineWidth(0.5); doc.line(margin, y, 612 - margin, y); y += gap;
+      let total = 0;
+      Object.keys(counts).forEach(label => {
+        const c = counts[label]; const cost = c * pricePerStudent; total += cost;
+        doc.text(`${label}: ${c} students × $${pricePerStudent} = $${cost}`, margin, y); y += gap;
+      });
+      if (regType !== 'Mail-In' && pizzaBoxes > 0) {
+        const pizzaCost = pizzaBoxes * pricePerPizza; total += pizzaCost;
+        doc.text(`Pizza Boxes: ${pizzaBoxes} × $${pricePerPizza} = $${pizzaCost}`, margin, y); y += gap;
+      }
+      doc.setLineWidth(0.5); doc.line(margin, y, 612 - margin, y); y += gap;
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(14); doc.text(`TOTAL: $${total}`, margin, y);
+      return doc;
+    }
   </script>
 </body>
 </html>
