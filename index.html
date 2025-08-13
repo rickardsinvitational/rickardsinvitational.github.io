@@ -216,6 +216,20 @@
     .handbooks .card a:hover {
       background: #0041cc;
     }
+
+    /* Countdown (injected via JS; no content edits needed) */
+    .countdown {
+      margin-top: 1rem;
+      padding: .4rem .9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.28);
+      background: rgba(255,255,255,.16);
+      font-size: clamp(1.125rem, 2vw, 1.6rem);
+      letter-spacing: .5px;
+      color: #fff;
+      line-height: 1;
+      user-select: none;
+    }
   </style>
 </head>
 
@@ -297,6 +311,71 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });
+  </script>
+
+  <!-- Countdown (no HTML edits; injected below the date line in the hero) -->
+  <script>
+    (function () {
+      // Set the exact start time of the event (EST; after DST ends in Nov).
+      // Change only this line if your start time changes.
+      const EVENT_START_ISO = '2025-11-08T09:00:00-08:00';
+
+      function two(n){ return n < 10 ? '0' + n : '' + n; }
+
+      function formatDiff(ms) {
+        if (ms <= 0) return null;
+        const totalSec = Math.floor(ms / 1000);
+        const days = Math.floor(totalSec / 86400);
+        const hours = Math.floor((totalSec % 86400) / 3600);
+        const mins = Math.floor((totalSec % 3600) / 60);
+        const secs = totalSec % 60;
+        return { days, hours, mins, secs };
+      }
+
+      function mountCountdown() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+
+        // Create the element dynamically so your original content stays unchanged
+        const el = document.createElement('div');
+        el.className = 'countdown';
+        el.id = 'countdown';
+        el.setAttribute('aria-live', 'polite');
+        el.textContent = 'Countdown loading…';
+
+        // Insert right after the date <p> if present, otherwise at end of hero
+        const dateLine = hero.querySelector('p');
+        if (dateLine && dateLine.parentNode) {
+          dateLine.insertAdjacentElement('afterend', el);
+        } else {
+          hero.appendChild(el);
+        }
+
+        const target = new Date(EVENT_START_ISO).getTime();
+
+        function tick() {
+          const now = Date.now();
+          const diff = target - now;
+          const parts = formatDiff(diff);
+          if (!parts) {
+            el.textContent = 'Event in progress!';
+            clearInterval(timer);
+            return;
+          }
+          const { days, hours, mins, secs } = parts;
+          el.textContent = `${days}d • ${two(hours)}h • ${two(mins)}m • ${two(secs)}s`;
+        }
+
+        tick(); // initial
+        const timer = setInterval(tick, 1000);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mountCountdown);
+      } else {
+        mountCountdown();
+      }
+    })();
   </script>
 </body>
 </html>
