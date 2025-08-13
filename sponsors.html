@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sponsors — Rickards Invitational</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root { --primary:#0057ff; --light:#f5f7fa; --text:#333; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:var(--light);
+      color:var(--text);
+    }
+
+    /* Sticky Header (matches your other pages) */
+    header{
+      position:sticky; top:0;
+      background:#fff; padding:1rem;
+      box-shadow:0 2px 5px rgba(0,0,0,0.1);
+      z-index:1000;
+    }
+    nav{
+      max-width:1200px; margin:auto;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    nav a{
+      text-decoration:none; color:var(--text);
+      margin:0 .75rem; font-weight:600; position:relative;
+    }
+    nav a::after{
+      content:''; position:absolute; left:0; bottom:-3px;
+      width:0; height:2px; background:var(--primary);
+      transition:width .3s;
+    }
+    nav a:hover::after, nav a.active::after{ width:100%; }
+
+    /* Page container */
+    .container{
+      max-width:1100px; margin:3rem auto 6rem; padding:0 1rem;
+      text-align:center;
+    }
+    h1{
+      font-size:clamp(2rem, 4vw, 3rem);
+      color:var(--primary);
+      margin-bottom:.5rem;
+    }
+    .lead{ color:#555; margin-bottom:2rem; }
+
+    /* Logo grid */
+    .logo-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap:1.25rem;
+      align-items:stretch;
+    }
+    .logo-card{
+      display:flex; align-items:center; justify-content:center;
+      background:#fff;
+      border-radius:12px;
+      padding:1.25rem;
+      height:140px;
+      box-shadow:0 6px 20px rgba(0,0,0,.08);
+      transition: transform .2s, box-shadow .2s, filter .2s, opacity .2s;
+      text-decoration:none;
+    }
+    .logo-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 28px rgba(0,0,0,.12);
+    }
+    .logo-card img{
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      filter: grayscale(100%);
+      opacity:.9;
+      transition: filter .2s, opacity .2s;
+    }
+    .logo-card:hover img{
+      filter:none;
+      opacity:1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
+      <div>
+        <a href="registration.html">Registration</a>
+        <a href="past-tests.html">Past Tests</a>
+        <a href="team.html">Team</a>
+        <a href="sponsors.html" class="active">Sponsors</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container">
+    <h1>Thanks to all of our sponsors!</h1>
+    <p class="lead">We’re grateful for your support of the Rickards Math Invitational.</p>
+
+<div class="logo-grid">
+  <!-- AoPS -->
+  <a class="logo-card"
+     href="https://aops.com"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Art of Problem Solving" title="Art of Problem Solving">
+    <img src="sponsors/AoPS_Main_Logo (1).png" alt="Art of Problem Solving" loading="lazy">
+  </a>
+
+  <!-- Jane Street -->
+  <a class="logo-card"
+     href="https://www.janestreet.com/"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Jane Street" title="Jane Street">
+    <img src="sponsors/LOGO_stacked_w_registration_black.png" alt="Jane Street" loading="lazy">
+  </a>
+</div>
+
