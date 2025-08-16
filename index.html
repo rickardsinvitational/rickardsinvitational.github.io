@@ -18,7 +18,6 @@
   <meta property="og:description" content="Join the 2025 James S. Rickards Fall Invitational, one of the largest math competitions in the Southeast.">
   <meta property="og:url" content="https://rickardsinvitational.github.io/">
   <meta property="og:type" content="website">
-  <!-- Replace with your actual preview image URL -->
   <meta property="og:image" content="https://rickardsinvitational.github.io/assets/og-image.png">
 
   <!-- Google Font -->
@@ -77,9 +76,7 @@
       transition: width 0.3s;
     }
     nav a:hover::after,
-    nav a.active::after {
-      width: 100%;
-    }
+    nav a.active::after { width: 100%; }
 
     /*–– Hero Overrides ––*/
     section:not(.hero) {
@@ -127,7 +124,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
-      align-items: stretch; /* stretch panels equally */
+      align-items: stretch;
     }
     .director-welcome,
     .guest-speaker {
@@ -167,7 +164,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 30%; /* shift head down */
+      object-position: center 30%;
     }
 
     /*–– Why Us Cards ––*/
@@ -187,10 +184,7 @@
       transform: translateY(-5px);
       box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     }
-    .card h3 {
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
+    .card h3 { margin-bottom: 0.5rem; color: var(--primary); }
 
     /*–– Handbook Buttons ––*/
     .handbooks {
@@ -199,9 +193,7 @@
       gap: 2rem;
       margin-top: 2rem;
     }
-    .handbooks .card {
-      text-align: center;
-    }
+    .handbooks .card { text-align: center; }
     .handbooks .card a {
       display: inline-block;
       margin-top: 1rem;
@@ -213,9 +205,7 @@
       font-weight: 600;
       transition: background 0.3s;
     }
-    .handbooks .card a:hover {
-      background: #0041cc;
-    }
+    .handbooks .card a:hover { background: #0041cc; }
 
     /* Countdown (injected via JS; no content edits needed) */
     .countdown {
@@ -230,6 +220,54 @@
       line-height: 1;
       user-select: none;
     }
+
+    /* === Carousel Styles (namespaced; safe with existing CSS) === */
+    .ri-carousel {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 0 1rem;
+      position: relative;
+      user-select: none;
+    }
+    .ri-carousel__viewport {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
+      background: #111;
+    }
+    .ri-carousel__track {
+      display: flex;
+      transition: transform 420ms ease;
+      will-change: transform;
+    }
+    .ri-slide {
+      position: relative;
+      min-width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #111;
+    }
+    .ri-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .ri-caption {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      padding: 6px 10px;
+      font-size: .95rem;
+      background: rgba(0,0,0,.55);
+      color: #fff;
+      border-radius: 10px;
+      backdrop-filter: blur(2px);
+    }
+    .ri-empty {
+      text-align: center;
+      color: #666;
+      padding: 1rem;
+    }
   </style>
 </head>
 
@@ -238,7 +276,7 @@
     <nav>
       <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
       <div>
-        <a href="registration.html">Registration</a>
+<!--        <a href="registration.html" class="active">Registration</a> -->
         <a href="past-tests.html">Past Tests</a>
         <a href="team.html">Team</a>
         <a href="sponsors.html">Sponsors</a>
@@ -272,6 +310,13 @@
         <img src="poshenloh.jpg" alt="Dr. Po-Shen Loh">
       </div>
       <p>Po-Shen Loh is a social entrepreneur and mathematician, with a track record of inventing incentive-aligned solutions to address timely population-scale real-world problems, from pandemic control to helping human society thrive in the AI era. He is a math professor at Carnegie Mellon University, and served a decade-long term as the national coach of the USA International Mathematical Olympiad team from 2013–2023. Since 2023, he has been the Vice President of the IMO Foundation, as the founder and organizer of the annual IMO Alumni Reunion. His latest innovation, <a href="https://live.poshenloh.com" target="_blank" rel="noopener noreferrer">LIVE</a>, brings together math stars and professional actors, to mass-produce live-streamed creative problem-solving lessons that match the engagement level of online video entertainment.</p>
+    </div>
+  </section>
+
+  <!-- ======= Past Highlights Carousel (autofills from a folder) ======= -->
+  <section class="ri-carousel" aria-label="Past Highlights">
+    <div class="ri-carousel__viewport">
+      <ul class="ri-carousel__track" id="riTrack"><!-- slides injected by JS --></ul>
     </div>
   </section>
 
@@ -309,19 +354,13 @@
 
   <!-- AOS Script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({ duration: 700, once: true });
-  </script>
+  <script> AOS.init({ duration: 700, once: true }); </script>
 
   <!-- Countdown (no HTML edits; injected below the date line in the hero) -->
   <script>
     (function () {
-      // Set the exact start time of the event (EST; after DST ends in Nov).
-      // Change only this line if your start time changes.
       const EVENT_START_ISO = '2025-11-08T09:00:00-08:00';
-
       function two(n){ return n < 10 ? '0' + n : '' + n; }
-
       function formatDiff(ms) {
         if (ms <= 0) return null;
         const totalSec = Math.floor(ms / 1000);
@@ -331,50 +370,137 @@
         const secs = totalSec % 60;
         return { days, hours, mins, secs };
       }
-
       function mountCountdown() {
         const hero = document.querySelector('.hero');
         if (!hero) return;
-
-        // Create the element dynamically so your original content stays unchanged
         const el = document.createElement('div');
         el.className = 'countdown';
         el.id = 'countdown';
         el.setAttribute('aria-live', 'polite');
         el.textContent = 'Countdown loading…';
-
-        // Insert right after the date <p> if present, otherwise at end of hero
         const dateLine = hero.querySelector('p');
         if (dateLine && dateLine.parentNode) {
           dateLine.insertAdjacentElement('afterend', el);
         } else {
           hero.appendChild(el);
         }
-
         const target = new Date(EVENT_START_ISO).getTime();
-
         function tick() {
           const now = Date.now();
           const diff = target - now;
           const parts = formatDiff(diff);
-          if (!parts) {
-            el.textContent = 'Event in progress!';
-            clearInterval(timer);
-            return;
-          }
+          if (!parts) { el.textContent = 'Event in progress!'; clearInterval(timer); return; }
           const { days, hours, mins, secs } = parts;
           el.textContent = `${days}d • ${two(hours)}h • ${two(mins)}m • ${two(secs)}s`;
         }
-
-        tick(); // initial
+        tick();
         const timer = setInterval(tick, 1000);
       }
-
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', mountCountdown);
-      } else {
-        mountCountdown();
+      } else { mountCountdown(); }
+    })();
+  </script>
+
+  <!-- Carousel: fetch every image in a repo folder and autoplay -->
+  <script>
+    (async function () {
+      // === CONFIGURE THESE IF NEEDED ===
+      const GH_OWNER   = 'rickardsinvitational';            // GitHub username/org
+      const GH_REPO    = 'rickardsinvitational.github.io';  // repository name
+      const GH_BRANCH  = 'main';                            // default branch
+      const IMAGES_DIR = 'images/past-highlights';          // folder you upload
+      const CAPTION    = '2023 Rickards Invitational';      // same caption for all
+      const AUTO_MS    = 4500;                              // autoplay interval ms
+      // =================================
+
+      const track = document.getElementById('riTrack');
+      const empty = document.getElementById('riEmpty');
+      if (!track) return;
+
+      // Helper to title-case filename for alt text
+      const humanize = (s) =>
+        s.replace(/\.[^.]+$/, '')
+         .replace(/[-_]+/g, ' ')
+         .replace(/\b\w/g, c => c.toUpperCase())
+         .trim() || 'Past highlight photo';
+
+      async function listFolderViaGitHubAPI() {
+        const url = `https://api.github.com/repos/${encodeURIComponent(GH_OWNER)}/${encodeURIComponent(GH_REPO)}/contents/${encodeURIComponent(IMAGES_DIR)}?ref=${encodeURIComponent(GH_BRANCH)}`;
+        const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+        if (!res.ok) throw new Error('GitHub API error ' + res.status);
+        const items = await res.json();
+        return (Array.isArray(items) ? items : []).filter(it =>
+          it.type === 'file' && /\.(png|jpe?g|webp|gif)$/i.test(it.name)
+        ).sort((a,b) =>
+          a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+        );
       }
+
+      async function buildSlides() {
+        try {
+          empty.hidden = false;
+          const files = await listFolderViaGitHubAPI();
+          if (!files.length) {
+            return [];
+          }
+          const frag = document.createDocumentFragment();
+          files.forEach((f, i) => {
+            const li = document.createElement('li');
+            li.className = 'ri-slide' + (i === 0 ? ' is-active' : '');
+            const img = document.createElement('img');
+            img.src = f.download_url;          // direct CDN URL from GitHub API
+            img.alt = humanize(f.name);
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            const cap = document.createElement('figcaption');
+            cap.className = 'ri-caption';
+            cap.textContent = CAPTION;         // same caption for all
+            li.appendChild(img);
+            li.appendChild(cap);
+            frag.appendChild(li);
+          });
+          track.appendChild(frag);
+          empty.hidden = true;
+          return Array.from(track.children);
+        } catch (e) {
+          empty.hidden = false;
+          console.error(e);
+          return [];
+        }
+      }
+
+      function initAutoplay(slides) {
+        if (!slides.length) return;
+        let index = 0;
+        function goTo(i) {
+          index = (i + slides.length) % slides.length;
+          track.style.transform = 'translateX(' + (-index * 100) + '%)';
+          slides.forEach((s, k) => s.classList.toggle('is-active', k === index));
+        }
+        function next() { goTo(index + 1); }
+
+        let timer = setInterval(next, AUTO_MS);
+
+        // Pause when tab hidden; resume on return
+        document.addEventListener('visibilitychange', () => {
+          clearInterval(timer);
+          if (!document.hidden) timer = setInterval(next, AUTO_MS);
+        });
+
+        // Optional: pause on hover (desktop)
+        const carousel = track.closest('.ri-carousel');
+        carousel.addEventListener('mouseenter', () => clearInterval(timer));
+        carousel.addEventListener('mouseleave', () => {
+          clearInterval(timer);
+          timer = setInterval(next, AUTO_MS);
+        });
+
+        goTo(0);
+      }
+
+      const slides = await buildSlides();
+      initAutoplay(slides);
     })();
   </script>
 </body>
