@@ -45,7 +45,7 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(8px);
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       z-index: 1000;
@@ -147,7 +147,6 @@
     .guest-speaker p {
       line-height: 1.6;
       margin-bottom: 1rem;
-      flex-shrink: 0;
     }
     .guest-speaker .photo-placeholder {
       width: 100%;
@@ -165,6 +164,39 @@
       height: 100%;
       object-fit: cover;
       object-position: center 30%;
+    }
+
+    /*–– Full-width split panel ––*/
+    .rdm-panel {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 2rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+
+      /* Make it span the entire row under the two cards */
+      flex: 1 1 100%;
+    }
+    .rdm-panel img {
+      width: 44%;
+      max-width: 560px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+    .rdm-panel .copy { flex: 1 1 300px; }
+    .rdm-panel h2 {
+      color: var(--primary);
+      margin-bottom: .5rem;
+      text-align: left;
+    }
+    @media (max-width: 820px) {
+      .rdm-panel { flex-direction: column; }
+      .rdm-panel img { width: 100%; max-width: none; }
+      .rdm-panel h2 { text-align: center; }
     }
 
     /*–– Why Us Cards ––*/
@@ -221,7 +253,7 @@
       user-select: none;
     }
 
-    /* === Carousel Styles (namespaced; safe with existing CSS) === */
+    /* === Carousel Styles === */
     .ri-carousel {
       max-width: 1000px;
       margin: 4rem auto;
@@ -276,7 +308,6 @@
     <nav>
       <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
       <div>
-<!--        <a href="registration.html" class="active">Registration</a> -->
         <a href="past-tests.html">Past Tests</a>
         <a href="team.html">Team</a>
         <a href="sponsors.html">Sponsors</a>
@@ -311,14 +342,23 @@
       </div>
       <p>Po-Shen Loh is a social entrepreneur and mathematician, with a track record of inventing incentive-aligned solutions to address timely population-scale real-world problems, from pandemic control to helping human society thrive in the AI era. He is a math professor at Carnegie Mellon University, and served a decade-long term as the national coach of the USA International Mathematical Olympiad team from 2013–2023. Since 2023, he has been the Vice President of the IMO Foundation, as the founder and organizer of the annual IMO Alumni Reunion. His latest innovation, <a href="https://live.poshenloh.com" target="_blank" rel="noopener noreferrer">LIVE</a>, brings together math stars and professional actors, to mass-produce live-streamed creative problem-solving lessons that match the engagement level of online video entertainment.</p>
     </div>
-  </section>
 
-  <!-- ======= Past Highlights Carousel (autofills from a folder) ======= -->
-  <section class="ri-carousel" aria-label="Past Highlights">
-    <div class="ri-carousel__viewport">
-      <ul class="ri-carousel__track" id="riTrack"><!-- slides injected by JS --></ul>
+    <!-- Full-width Snacks & Desserts Panel -->
+    <div class="rdm-panel" data-aos="fade-up" style="align-items:center;">
+      <img
+        src="rick dm pic.jpg"
+        alt="Rickards Dance Marathon selling snacks and dessert at the invitational"
+        loading="lazy"
+        decoding="async"
+        style="width:100px; height:100px; object-fit:contain; border-radius:8px; flex-shrink:0; margin-right:1rem;"
+      />
+      <div class="copy">
+        <h2>Snacks & Desserts by Rickards DM</h2>
+        <p><strong>Rickards Dance Marathon will be selling snacks and dessert!</strong>
+          <p>Grab a treat between rounds and support our school’s Miracle Network Dance Marathon.</p>
+      </div>
     </div>
-  </section>
+    </section>
 
   <!-- Why Us -->
   <section class="why-us">
