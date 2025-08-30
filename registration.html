@@ -15,8 +15,28 @@
     header{position:sticky;top:0;background:#fff;padding:1rem;box-shadow:0 2px 5px rgba(0,0,0,.1);z-index:5}
     nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center}
     nav a{text-decoration:none;color:var(--text);margin:0 .75rem;font-weight:600;position:relative}
-    nav a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--primary);transition:width .3s}
-    nav a:hover::after,nav a.active::after{width:100%}
+    /* Remove underline hover effect for dropdown parent */
+    nav a::after{display:none;}
+
+    /* Dropdown */
+    .nav-right { display:flex; align-items:center; gap:.5rem; }
+    .dropdown { position:relative; }
+    /* Remove arrow */
+    .dropdown > a::after { display:none; }
+    .dropdown-menu {
+      position:absolute; top:100%; left:0;
+      min-width: 220px;
+      background:#fff; border:1px solid #e5e7eb; border-radius:10px;
+      box-shadow:0 12px 28px rgba(0,0,0,.12);
+      padding:.35rem; display:none; z-index:1001;
+    }
+    .dropdown-menu a {
+      display:block; padding:.6rem .75rem; margin:.1rem 0;
+      text-decoration:none; color:var(--text); border-radius:8px;
+    }
+    .dropdown-menu a:hover { background:#f3f4f6; }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu { display:block; }
 
     .container{max-width:1000px;margin:3rem auto 6rem;padding:0 1rem;text-align:left}
     h1{font-size:2.4rem;margin-bottom:1rem;text-align:center}
@@ -48,8 +68,15 @@
   <header>
     <nav>
       <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
-      <div>
-<!--        <a href="registration.html" class="active">Registration</a> -->
+      <div class="nav-right">
+        <!-- DROPDOWN: Registration -->
+        <div class="dropdown">
+          <a href="registration.html" class="active">Registration</a>
+          <div class="dropdown-menu" role="menu" aria-label="Registration">
+            <a href="registration.html" aria-current="page">Sign-Up Forms</a>
+            <a href="school-codes.html">School Codes</a>
+          </div>
+        </div>
         <a href="past-tests.html">Past Tests</a>
         <a href="team.html">Team</a>
         <a href="sponsors.html">Sponsors</a>
@@ -410,6 +437,23 @@
       doc.setFont('helvetica', 'bold'); doc.setFontSize(14); doc.text(`TOTAL: $${total}`, margin, y);
       return doc;
     }
+  </script>
+
+  <!-- Touch-toggle for dropdown (mobile) -->
+  <script>
+    document.querySelectorAll('.dropdown > a').forEach(t => {
+      t.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && dd.querySelector('.dropdown-menu')) {
+          e.preventDefault();
+          dd.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+      });
+    });
   </script>
 </body>
 </html>

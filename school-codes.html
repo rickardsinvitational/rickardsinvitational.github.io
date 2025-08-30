@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>School Codes - Rickards Invitational</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root { --primary:#0057ff; --light:#f5f7fa; --text:#333; }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{ font-family:'Montserrat',sans-serif; background:var(--light); color:var(--text); }
+    header{ position:sticky; top:0; background:#fff; padding:1rem; box-shadow:0 2px 5px rgba(0,0,0,.1); z-index:5; }
+    nav{ max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; }
+    nav a{ text-decoration:none; color:var(--text); margin:0 .75rem; font-weight:600; position:relative; }
+    nav a::after{ content:''; position:absolute; left:0; bottom:-3px; width:0; height:2px; background:var(--primary); transition:width .3s; }
+    nav a:hover::after, nav a.active::after{ width:100%; }
+
+    /* dropdown */
+    .nav-right{ display:flex; align-items:center; gap:.5rem; }
+    .dropdown{ position:relative; }
+
+    /* REMOVE arrow + underline for Registration */
+    .dropdown > a::after{ content: none !important; display:none !important; }
+    .dropdown > a:hover::after,
+    .dropdown > a.active::after{ width:0 !important; }
+
+    .dropdown-menu{
+      position:absolute; top:100%; left:0; min-width:220px; background:#fff; border:1px solid #e5e7eb; border-radius:10px;
+      box-shadow:0 12px 28px rgba(0,0,0,.12); padding:.35rem; display:none; z-index:1001;
+    }
+    .dropdown-menu a{ display:block; padding:.6rem .75rem; margin:.1rem 0; border-radius:8px; text-decoration:none; color:var(--text); }
+    .dropdown-menu a:hover{ background:#f3f4f6; }
+    .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu, .dropdown.open .dropdown-menu{ display:block; }
+    nav a.active{ color: var(--primary); }
+
+    .container{ max-width:1000px; margin:3rem auto 6rem; padding:0 1rem; }
+    h1{ font-size:2.2rem; color:var(--primary); margin-bottom:.5rem; text-align:center; }
+    p.lead{ text-align:center; color:#555; margin-bottom:1.5rem; }
+    .card{ background:#fff; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,.08); padding:1.25rem; }
+
+    table{ width:100%; border-collapse:separate; border-spacing:0; }
+    th, td{ padding:.7rem .75rem; text-align:left; }
+    thead th{ background:#f3f4f6; font-weight:700; }
+    tbody tr:nth-child(even){ background:#fafafa; }
+    .note{ margin-top:1rem; color:#555; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
+      <div class="nav-right">
+        <div class="dropdown">
+          <a href="registration.html" class="active">Registration</a>
+          <div class="dropdown-menu" role="menu" aria-label="Registration">
+            <a href="registration.html">Sign-Up Forms</a>
+            <a href="school-codes.html" aria-current="page">School Codes</a>
+          </div>
+        </div>
+        <a href="past-tests.html">Past Tests</a>
+        <a href="team.html">Team</a>
+        <a href="sponsors.html">Sponsors</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container">
+    <h1>School Codes</h1>
+    <p class="lead">Lookup your school’s 4-digit code. If your school is missing, email <a href="mailto:rickardsinvitational@gmail.com">rickardsinvitational@gmail.com</a>.</p>
+
+    <div class="card">
+      <table aria-label="School codes">
+        <thead>
+          <tr><th>School</th><th>Code</th></tr>
+        </thead>
+        <tbody>
+        <tr><td>Lincoln High School Stowers</td><td>1090</td></tr>
+        <tr><td>Community Christian School</td><td>1120</td></tr>
+        <tr><td>Gadsden County High</td><td>1130</td></tr>
+        <tr><td>School of Arts and Sciences on Thomasville Road</td><td>1140</td></tr>
+        <tr><td>Swift Creek Middle</td><td>1221</td></tr>
+        <tr><td>Magnet Innovation Center</td><td>1230</td></tr>
+        <tr><td>Fairview Middle</td><td>1251</td></tr>
+        <tr><td>James S. Rickards High School</td><td>1400</td></tr>
+        <tr><td>Milton High School</td><td>1540</td></tr>
+        <tr><td>Florida State University Schools (FSUS)</td><td>1560</td></tr>
+        <tr><td>Gulf Breeze High School</td><td>1570</td></tr>
+        <tr><td>Maclay</td><td>1720</td></tr>
+        <tr><td>Maclay Middle</td><td>1721</td></tr>
+        <tr><td>Navarre High School</td><td>1800</td></tr>
+        <tr><td>Lawton Chiles High School</td><td>1810</td></tr>
+        <tr><td>Deerlake Middle</td><td>1851</td></tr>
+        <tr><td>Leon</td><td>1900</td></tr>
+        <tr><td>Rocky Bayou Christian School</td><td>1910</td></tr>
+        <tr><td>St. John Paul II Catholic High School</td><td>1940</td></tr>
+        <tr><td>St. Paul’s Catholic School</td><td>1950</td></tr>
+        <tr><td>Trinity Catholic School</td><td>1960</td></tr>
+        <tr><td>North Florida Christian School</td><td>1970</td></tr>
+        <tr><td>Holy Comforter Episcopal School</td><td>1980</td></tr>
+        <tr><td>Seaside Neighborhood School</td><td>1990</td></tr>
+        <tr><td>Choctawhatchee High School</td><td>2000</td></tr>
+        <tr><td>Fort Walton Beach High School</td><td>2100</td></tr>
+        <tr><td>Pensacola High School</td><td>2200</td></tr>
+        <tr><td>Tate High School</td><td>2210</td></tr>
+        <tr><td>Workman Middle School</td><td>2221</td></tr>
+        <tr><td>Pine Forest High School</td><td>2230</td></tr>
+        <tr><td>Washington High School</td><td>2240</td></tr>
+        <tr><td>West Florida High School</td><td>2250</td></tr>
+        <tr><td>Ransom Middle School</td><td>2251</td></tr>
+        <tr><td>Escambia High School</td><td>2260</td></tr>
+        <tr><td>Booker T. Washington Middle School</td><td>2261</td></tr>
+        <tr><td>Pensacola Catholic High School</td><td>2270</td></tr>
+        <tr><td>Scambia Virtual Academy</td><td>2290</td></tr>
+        <tr><td>Bellview Middle School</td><td>2291</td></tr>
+        <tr><td>Ernest Ward Middle School</td><td>2292</td></tr>
+        <tr><td>Ferry Pass Middle School</td><td>2293</td></tr>
+        <tr><td>Bailey Middle School</td><td>2294</td></tr>
+        <tr><td>Brown Barge Middle School</td><td>2295</td></tr>
+        <tr><td>Warrington Middle School</td><td>2296</td></tr>
+        <tr><td>Beulah Middle School</td><td>2297</td></tr>
+        <tr><td>Workman High School</td><td>2298</td></tr>
+        <tr><td>Jim C. Bailey Middle School</td><td>2299</td></tr>
+        <tr><td>South Walton High School</td><td>2300</td></tr>
+        <tr><td>Walton High School</td><td>2310</td></tr>
+        <tr><td>Freeport High School</td><td>2320</td></tr>
+        <tr><td>Emerald Coast Middle School</td><td>2321</td></tr>
+        <tr><td>Walton Middle School</td><td>2322</td></tr>
+        <tr><td>Paxton School</td><td>2330</td></tr>
+        <tr><td>Walton Virtual School</td><td>2390</td></tr>
+        <tr><td>Bay High School</td><td>2400</td></tr>
+        <tr><td>Rutherford High School</td><td>2410</td></tr>
+        <tr><td>A. Crawford Mosley High School</td><td>2420</td></tr>
+        <tr><td>Arnold High School</td><td>2430</td></tr>
+        <tr><td>J.R. Arnold High School</td><td>2431</td></tr>
+        <tr><td>Bozeman School</td><td>2440</td></tr>
+        <tr><td>Deane Bozeman Middle School</td><td>2441</td></tr>
+        <tr><td>Merritt Brown Middle School</td><td>2442</td></tr>
+        <tr><td>Everitt Middle School</td><td>2443</td></tr>
+        <tr><td>Mowat Middle School</td><td>2444</td></tr>
+        <tr><td>Surfside Middle School</td><td>2445</td></tr>
+        <tr><td>Rosenwald Middle School</td><td>2446</td></tr>
+        <tr><td>Jinks Middle School</td><td>2447</td></tr>
+        <tr><td>Breakfast Point Academy</td><td>2448</td></tr>
+        <tr><td>Bay Virtual School</td><td>2490</td></tr>
+        <tr><td>Chipley High School</td><td>2500</td></tr>
+        <tr><td>Roulhac Middle School</td><td>2501</td></tr>
+        <tr><td>Vernon High School</td><td>2510</td></tr>
+        <tr><td>Vernon Middle School</td><td>2511</td></tr>
+        <tr><td>Graceville High School</td><td>2520</td></tr>
+        <tr><td>Graceville Middle School</td><td>2521</td></tr>
+        <tr><td>Cottondale High School</td><td>2530</td></tr>
+        <tr><td>Cottondale Middle School</td><td>2531</td></tr>
+        <tr><td>Malone School</td><td>2540</td></tr>
+        <tr><td>Grand Ridge School</td><td>2550</td></tr>
+        <tr><td>Jackson County Virtual School</td><td>2590</td></tr>
+        <tr><td>Blountstown High School</td><td>2600</td></tr>
+        <tr><td>Blountstown Middle School</td><td>2601</td></tr>
+        <tr><td>Altha Public School</td><td>2610</td></tr>
+        <tr><td>Liberty County High School</td><td>2700</td></tr>
+        <tr><td>Hosford Elementary & Junior High School</td><td>2701</td></tr>
+        <tr><td>Apalachicola High School</td><td>2800</td></tr>
+        <tr><td>Franklin County School</td><td>2810</td></tr>
+        <tr><td>Franklin County Middle School</td><td>2811</td></tr>
+        <tr><td>Wewahitchka High School</td><td>2900</td></tr>
+        <tr><td>Wewahitchka Middle School</td><td>2901</td></tr>
+        <tr><td>Port St. Joe High School</td><td>2910</td></tr>
+        <tr><td>Port St. Joe Middle School</td><td>2911</td></tr>
+        <tr><td>Gulf Virtual School</td><td>2990</td></tr>
+        <tr><td>Columbia High School</td><td>3000</td></tr>
+        <tr><td>Lake City Middle School</td><td>3001</td></tr>
+        <tr><td>Fort White High School</td><td>3010</td></tr>
+        <tr><td>Fort White Middle School</td><td>3011</td></tr>
+        <tr><td>Richardson Middle School</td><td>3012</td></tr>
+        <tr><td>Columbia Virtual School</td><td>3090</td></tr>
+        <tr><td>Suwannee High School</td><td>3100</td></tr>
+        <tr><td>Suwannee Middle School</td><td>3101</td></tr>
+        <tr><td>Branford High School</td><td>3110</td></tr>
+        <tr><td>Hamilton County High School</td><td>3200</td></tr>
+        <tr><td>Madison County High School</td><td>3300</td></tr>
+        <tr><td>Madison County Central School</td><td>3301</td></tr>
+        <tr><td>Lafayette High School</td><td>3400</td></tr>
+        <tr><td>Jefferson County High School</td><td>3500</td></tr>
+        <tr><td>Jefferson Somerset Academy</td><td>3501</td></tr>
+        <tr><td>Union County High School</td><td>3600</td></tr>
+        <tr><td>Lake Butler Middle School</td><td>3601</td></tr>
+        <tr><td>Baker County High School</td><td>3700</td></tr>
+        <tr><td>Baker County Middle School</td><td>3701</td></tr>
+        <tr><td>Dixie County High School</td><td>3800</td></tr>
+        <tr><td>Dixie County Middle School</td><td>3801</td></tr>
+        <tr><td>Gilchrist County High School</td><td>3900</td></tr>
+        <tr><td>Trenton High School</td><td>3910</td></tr>
+        <tr><td>Trenton Middle School</td><td>3911</td></tr>
+        <tr><td>Bell High School</td><td>3920</td></tr>
+        <tr><td>Bell Middle School</td><td>3921</td></tr>
+        <tr><td>Alachua County High School</td><td>4000</td></tr>
+        <tr><td>Buchholz High School</td><td>4010</td></tr>
+        <tr><td>Buchholz Middle School</td><td>4011</td></tr>
+        <tr><td>Eastside High School</td><td>4020</td></tr>
+        <tr><td>Eastside Middle School</td><td>4021</td></tr>
+        <tr><td>Gainesville High School</td><td>4030</td></tr>
+        <tr><td>Gainesville Middle School</td><td>4031</td></tr>
+        <tr><td>Newberry High School</td><td>4040</td></tr>
+        <tr><td>Newberry Middle School</td><td>4041</td></tr>
+        <tr><td>Santa Fe High School</td><td>4050</td></tr>
+        <tr><td>Santa Fe Middle School</td><td>4051</td></tr>
+        <tr><td>Hawthorne High School</td><td>4060</td></tr>
+        <tr><td>Hawthorne Middle School</td><td>4061</td></tr>
+        <tr><td>Oak View Middle School</td><td>4062</td></tr>
+        <tr><td>Kanapaha Middle School</td><td>4063</td></tr>
+        <tr><td>Howard Bishop Middle School</td><td>4064</td></tr>
+        <tr><td>Lincoln Middle School</td><td>4065</td></tr>
+        <tr><td>Westwood Middle School</td><td>4066</td></tr>
+        <tr><td>Fort Clarke Middle School</td><td>4067</td></tr>
+        <tr><td>High Springs Community School</td><td>4068</td></tr>
+        <tr><td>Archer Community School</td><td>4069</td></tr>
+        <tr><td>Loften High School</td><td>4070</td></tr>
+        <tr><td>Alachua eSchool</td><td>4090</td></tr>
+        <tr><td>St. Johns County High School</td><td>4100</td></tr>
+        <tr><td>Allen D. Nease High School</td><td>4110</td></tr>
+        <tr><td>Allen D. Nease Middle School</td><td>4111</td></tr>
+        <tr><td>Pedro Menendez High School</td><td>4120</td></tr>
+        <tr><td>Pedro Menendez Middle School</td><td>4121</td></tr>
+        <tr><td>Ponte Vedra High School</td><td>4130</td></tr>
+        <tr><td>Ponte Vedra Middle School</td><td>4131</td></tr>
+        <tr><td>St. Augustine High School</td><td>4140</td></tr>
+        <tr><td>St. Augustine Middle School</td><td>4141</td></tr>
+        <tr><td>Bartram Trail High School</td><td>4150</td></tr>
+        <tr><td>Bartram Trail Middle School</td><td>4151</td></tr>
+        <tr><td>Creekside High School</td><td>4160</td></tr>
+        <tr><td>Creekside Middle School</td><td>4161</td></tr>
+        <tr><td>St. Johns Virtual School</td><td>4190</td></tr>
+        <tr><td>Flagler Palm Coast High School</td><td>4200</td></tr>
+        <tr><td>Flagler Palm Coast Middle School</td><td>4201</td></tr>
+        <tr><td>Matanzas High School</td><td>4210</td></tr>
+        <tr><td>Matanzas Middle School</td><td>4211</td></tr>
+        <tr><td>Flagler Virtual School</td><td>4290</td></tr>
+        <tr><td>Putnam County High School</td><td>4300</td></tr>
+        <tr><td>Palatka High School</td><td>4310</td></tr>
+        <tr><td>Palatka Middle School</td><td>4311</td></tr>
+        <tr><td>Interlachen High School</td><td>4320</td></tr>
+        <tr><td>Interlachen Middle School</td><td>4321</td></tr>
+        <tr><td>Crescent City High School</td><td>4330</td></tr>
+        <tr><td>Crescent City Middle School</td><td>4331</td></tr>
+        <tr><td>Q.I. Roberts Junior-Senior High School</td><td>4340</td></tr>
+        <tr><td>Putnam Virtual School</td><td>4390</td></tr>
+        <tr><td>Clay High School</td><td>4400</td></tr>
+        <tr><td>Orange Park High School</td><td>4410</td></tr>
+        <tr><td>Ridgeview High School</td><td>4420</td></tr>
+        <tr><td>Middleburg High School</td><td>4430</td></tr>
+        <tr><td>Fleming Island High School</td><td>4440</td></tr>
+        <tr><td>Oakleaf High School</td><td>4450</td></tr>
+        <tr><td>Keystone Heights High School</td><td>4460</td></tr>
+        <tr><td>Clay Virtual Academy</td><td>4490</td></tr>
+        <tr><td>Starke High School</td><td>4500</td></tr>
+        <tr><td>Bradford Middle School</td><td>4501</td></tr>
+        <tr><td>Bradford Virtual School</td><td>4590</td></tr>
+        <tr><td>Nassau County High School</td><td>4600</td></tr>
+        <tr><td>Fernandina Beach High School</td><td>4610</td></tr>
+        <tr><td>Yulee High School</td><td>4620</td></tr>
+        <tr><td>Hilliard Middle-Senior High School</td><td>4630</td></tr>
+        <tr><td>West Nassau High School</td><td>4640</td></tr>
+        <tr><td>Nassau Virtual School</td><td>4690</td></tr>
+        <tr><td>Baker School</td><td>4700</td></tr>
+        <tr><td>Crestview High School</td><td>4710</td></tr>
+        <tr><td>Davidson Middle School</td><td>4711</td></tr>
+        <tr><td>Fort Walton Beach High School</td><td>4720</td></tr>
+        <tr><td>Bruner Middle School</td><td>4721</td></tr>
+        <tr><td>Choctawhatchee High School</td><td>4730</td></tr>
+        <tr><td>Meigs Middle School</td><td>4731</td></tr>
+        <tr><td>Niceville High School</td><td>4740</td></tr>
+        <tr><td>Lewis Middle School</td><td>4741</td></tr>
+        <tr><td>Destin Middle School</td><td>4742</td></tr>
+        <tr><td>Ruckel Middle School</td><td>4743</td></tr>
+        <tr><td>Okaloosa STEMM Academy</td><td>4744</td></tr>
+        <tr><td>Collegiate High School at Northwest Florida State College</td><td>4745</td></tr>
+        <tr><td>Laurel Hill School</td><td>4750</td></tr>
+        <tr><td>Rocky Bayou Christian School</td><td>4751</td></tr>
+        <tr><td>Okaloosa Online School</td><td>4790</td></tr>
+        <tr><td>Walton High School</td><td>4800</td></tr>
+        <tr><td>Freeport High School</td><td>4810</td></tr>
+        <tr><td>South Walton High School</td><td>4820</td></tr>
+        <tr><td>Walton Virtual School</td><td>4890</td></tr>
+        <tr><td>Bay High School</td><td>4900</td></tr>
+        <tr><td>Rutherford High School</td><td>4910</td></tr>
+        <tr><td>Arnold High School</td><td>4920</td></tr>
+        <tr><td>Bozeman School</td><td>4930</td></tr>
+        <tr><td>Mowat Middle School</td><td>4931</td></tr>
+        <tr><td>Merritt Brown Middle School</td><td>4932</td></tr>
+        <tr><td>Surfside Middle School</td><td>4933</td></tr>
+        <tr><td>Rosenwald Middle School</td><td>4934</td></tr>
+        <tr><td>Jinks Middle School</td><td>4935</td></tr>
+        <tr><td>Everitt Middle School</td><td>4936</td></tr>
+        <tr><td>Bay Virtual School</td><td>4990</td></tr>
+        <tr><td>Holmes County High School</td><td>5000</td></tr>
+        <tr><td>Poplar Springs School</td><td>5010</td></tr>
+        <tr><td>Ponce de Leon High School</td><td>5020</td></tr>
+        <tr><td>Bethlehem High School</td><td>5030</td></tr>
+        <tr><td>Chipola Christian Academy</td><td>5031</td></tr>
+        <tr><td>Bonifay Middle School</td><td>5032</td></tr>
+        <tr><td>Holmes Virtual School</td><td>5090</td></tr>
+        <tr><td>Washington County Christian School</td><td>5100</td></tr>
+        <tr><td>Bay Christian School</td><td>5110</td></tr>
+        <tr><td>Rocky Bayou Christian School Crestview Campus</td><td>5120</td></tr>
+        <tr><td>St. John Catholic Academy</td><td>5130</td></tr>
+        <tr><td>Panama City Advanced School</td><td>5140</td></tr>
+        <tr><td>Blountstown Christian Academy</td><td>5150</td></tr>
+        <tr><td>Liberty Wilderness Crossroads Academy</td><td>5160</td></tr>
+        <tr><td>Franklin Christian School</td><td>5170</td></tr>
+        <tr><td>Faith Christian School</td><td>5180</td></tr>
+        <tr><td>First Baptist Christian School</td><td>5190</td></tr>
+        <tr><td>Riverside Christian School</td><td>5200</td></tr>
+        <tr><td>Cornerstone Academy</td><td>5210</td></tr>
+        <tr><td>Trenton Christian School</td><td>5220</td></tr>
+        <tr><td>Hawthorne Christian Academy</td><td>5230</td></tr>
+        <tr><td>Bronson Middle High School</td><td>5240</td></tr>
+        <tr><td>Chiefland Middle High School</td><td>5250</td></tr>
+        <tr><td>Williston Middle High School</td><td>5260</td></tr>
+        <tr><td>Redeemer Christian School</td><td>5270</td></tr>
+        <tr><td>Ocala Christian Academy</td><td>5280</td></tr>
+        <tr><td>Christian Life Academy</td><td>5290</td></tr>
+        <tr><td>Trinity Catholic High School</td><td>5300</td></tr>
+        <tr><td>Meadowbrook Academy</td><td>5310</td></tr>
+        <tr><td>Seven Rivers Christian School</td><td>5320</td></tr>
+        <tr><td>Crystal River Christian School</td><td>5330</td></tr>
+        <tr><td>Citrus Park Christian School</td><td>5340</td></tr>
+        <tr><td>Nature Coast Technical High School</td><td>5350</td></tr>
+        <tr><td>Bishop McLaughlin Catholic High School</td><td>5360</td></tr>
+        <tr><td>Springstead High School</td><td>5370</td></tr>
+        <tr><td>Central High School</td><td>5380</td></tr>
+        <tr><td>Weeki Wachee High School</td><td>5390</td></tr>
+        <tr><td>Hernando High School</td><td>5400</td></tr>
+        <tr><td>Hernando Virtual School</td><td>5490</td></tr>
+        <tr><td>Pasco High School</td><td>5500</td></tr>
+        <tr><td>Zephyrhills High School</td><td>5510</td></tr>
+        <tr><td>Land O' Lakes High School</td><td>5520</td></tr>
+        <tr><td>Sunlake High School</td><td>5530</td></tr>
+        <tr><td>Wiregrass Ranch High School</td><td>5540</td></tr>
+        <tr><td>Wesley Chapel High School</td><td>5550</td></tr>
+        <tr><td>Cypress Creek High School</td><td>5560</td></tr>
+        <tr><td>Mitchell High School</td><td>5570</td></tr>
+        <tr><td>Anclote High School</td><td>5580</td></tr>
+        <tr><td>River Ridge High School</td><td>5590</td></tr>
+        <tr><td>Gulf High School</td><td>5600</td></tr>
+        <tr><td>Pasco eSchool</td><td>5690</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Tip: Codes are assigned by organizers. Don’t guess; email us if unsure.</p>
+    </div>
+  </section>
+
+  <script>
+    // Touch toggle for dropdown
+    document.querySelectorAll('.dropdown > a').forEach(t => {
+      t.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && dd.querySelector('.dropdown-menu')) {
+          e.preventDefault();
+          dd.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
