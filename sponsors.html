@@ -39,6 +39,31 @@
     }
     nav a:hover::after, nav a.active::after{ width:100%; }
 
+    /* ===== Dropdown ===== */
+    .nav-right{ display:flex; align-items:center; gap:.5rem; }
+    .dropdown{ position:relative; }
+    /* Remove arrow & underline for the dropdown trigger ONLY */
+    .dropdown > a::after{ display:none !important; content:none !important; }
+    .dropdown > a:hover::after,
+    .dropdown > a.active::after{ width:0 !important; }
+
+    .dropdown-menu{
+      position:absolute; top:100%; left:0;
+      min-width:220px; background:#fff; border:1px solid #e5e7eb; border-radius:10px;
+      box-shadow:0 12px 28px rgba(0,0,0,.12);
+      padding:.35rem; display:none; z-index:1001;
+    }
+    .dropdown-menu a{
+      display:block; padding:.6rem .75rem; margin:.1rem 0;
+      border-radius:8px; text-decoration:none; color:var(--text);
+    }
+    .dropdown-menu a:hover{ background:#f3f4f6; }
+
+    /* Show on hover/focus */
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown.open .dropdown-menu{ display:block; }
+
     /* Page container */
     .container{
       max-width:1100px; margin:3rem auto 6rem; padding:0 1rem;
@@ -90,8 +115,15 @@
   <header>
     <nav>
       <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
-      <div>
-       <a href="registration.html" class="active">Registration</a> 
+      <div class="nav-right">
+        <!-- DROPDOWN: Registration (works on all pages) -->
+        <div class="dropdown">
+          <a href="registration.html">Registration</a>
+          <div class="dropdown-menu" role="menu" aria-label="Registration">
+            <a href="registration.html">Sign-Up Forms</a>
+            <a href="school-codes.html">School Codes</a>
+          </div>
+        </div>
         <a href="past-tests.html">Past Tests</a>
         <a href="team.html">Team</a>
         <a href="sponsors.html" class="active">Sponsors</a>
@@ -103,40 +135,60 @@
     <h1>Thanks to all of our sponsors!</h1>
     <p class="lead">We’re grateful for your support of the Rickards Math Invitational.</p>
 
-<div class="logo-grid">
-  <!-- AoPS -->
-  <a class="logo-card"
-     href="https://aops.com"
-     target="_blank" rel="noopener noreferrer"
-     aria-label="Art of Problem Solving" title="Art of Problem Solving">
-    <img src="sponsors/AoPS_Main_Logo (1).png" alt="Art of Problem Solving" loading="lazy">
-  </a>
+    <div class="logo-grid">
+      <!-- AoPS -->
+      <a class="logo-card"
+         href="https://aops.com"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Art of Problem Solving" title="Art of Problem Solving">
+        <img src="sponsors/AoPS_Main_Logo (1).png" alt="Art of Problem Solving" loading="lazy">
+      </a>
 
-  <!-- Jane Street -->
-  <a class="logo-card"
-     href="https://www.janestreet.com/"
-     target="_blank" rel="noopener noreferrer"
-     aria-label="Jane Street" title="Jane Street">
-    <img src="sponsors/LOGO_stacked_w_registration_black.png" alt="Jane Street" loading="lazy">
-  </a>
+      <!-- Jane Street -->
+      <a class="logo-card"
+         href="https://www.janestreet.com/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Jane Street" title="Jane Street">
+        <img src="sponsors/LOGO_stacked_w_registration_black.png" alt="Jane Street" loading="lazy">
+      </a>
 
-  <!-- LIVE -->
-  <a class="logo-card"
-     href="https://live.poshenloh.com"
-     target="_blank" rel="noopener noreferrer"
-     aria-label="LIVE" title="LIVE">
-    <img src="sponsors/FullLogo_SlateBlue_withGlow_Small.png" alt="Jane Street" loading="lazy">
-  </a>
-</div>
+      <!-- LIVE -->
+      <a class="logo-card"
+         href="https://live.poshenloh.com"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="LIVE" title="LIVE">
+        <img src="sponsors/FullLogo_SlateBlue_withGlow_Small.png" alt="LIVE" loading="lazy">
+      </a>
+    </div>
 
-<p></p>
+    <p></p>
 
-<div class="logo-grid" style="margin-top:2rem;">
-  <!-- Fourth sponsor -->
-  <a class="logo-card"
-     href="https://www.sukrta.co/"
-     target="_blank" rel="noopener noreferrer"
-     aria-label="Sukrta Technologies" title="Sukrta Technologies">
-    <img src="sponsors/Brandlogo2 - Copy.jpg" alt="Sukrta Technologies" loading="lazy">
-  </a>
-</div>
+    <div class="logo-grid" style="margin-top:2rem;">
+      <!-- Fourth sponsor -->
+      <a class="logo-card"
+         href="https://www.sukrta.co/"
+         target="_blank" rel="noopener noreferrer"
+         aria-label="Sukrta Technologies" title="Sukrta Technologies">
+        <img src="sponsors/Brandlogo2 - Copy.jpg" alt="Sukrta Technologies" loading="lazy">
+      </a>
+    </div>
+  </section>
+
+  <script>
+    // Touch toggle for dropdown (mobile support)
+    document.querySelectorAll('.dropdown > a').forEach(t => {
+      t.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && dd.querySelector('.dropdown-menu')) {
+          e.preventDefault();
+          dd.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -47,6 +47,29 @@
     nav a.active::after {
       width: 100%;
     }
+
+    /* ===== Dropdown (shared behavior across pages) ===== */
+    .nav-right { display: flex; align-items: center; gap: .5rem; }
+    .dropdown { position: relative; }
+    /* Remove arrow & underline from the dropdown trigger ONLY */
+    .dropdown > a::after { display: none !important; content: none !important; }
+    .dropdown > a:hover::after,
+    .dropdown > a.active::after { width: 0 !important; }
+    .dropdown-menu {
+      position: absolute; top: 100%; left: 0;
+      min-width: 220px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.12);
+      padding: .35rem; display: none; z-index: 1001;
+    }
+    .dropdown-menu a {
+      display: block; padding: .6rem .75rem; margin: .1rem 0;
+      border-radius: 8px; text-decoration: none; color: var(--text);
+    }
+    .dropdown-menu a:hover { background: #f3f4f6; }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown.open .dropdown-menu { display: block; }
+
     .team-header {
       text-align: center;
       margin: 2rem 0 1rem;
@@ -138,8 +161,15 @@
   <header>
     <nav>
       <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
-      <div>
-        <a href="registration.html" class="active">Registration</a> 
+      <div class="nav-right">
+        <!-- DROPDOWN: Registration (works on all pages) -->
+        <div class="dropdown">
+          <a href="registration.html">Registration</a>
+          <div class="dropdown-menu" role="menu" aria-label="Registration">
+            <a href="registration.html">Sign-Up Forms</a>
+            <a href="school-codes.html">School Codes</a>
+          </div>
+        </div>
         <a href="past-tests.html">Past Tests</a>
         <a href="team.html" class="active">Team</a>
         <a href="sponsors.html">Sponsors</a>
@@ -223,6 +253,21 @@
 
     overlay.addEventListener('click', e => {
       if (e.target === overlay) overlay.classList.remove('active');
+    });
+
+    // Touch toggle for dropdown on mobile
+    document.querySelectorAll('.dropdown > a').forEach(t => {
+      t.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && dd.querySelector('.dropdown-menu')) {
+          e.preventDefault();
+          dd.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+      });
     });
   </script>
 </body>

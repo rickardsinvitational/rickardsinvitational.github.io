@@ -78,6 +78,28 @@
     nav a:hover::after,
     nav a.active::after { width: 100%; }
 
+    /* ===== Dropdown (shared) ===== */
+    .nav-right { display:flex; align-items:center; gap:.5rem; }
+    .dropdown { position:relative; }
+    /* Remove arrow & underline for the dropdown trigger ONLY */
+    .dropdown > a::after { display:none !important; content:none !important; }
+    .dropdown > a:hover::after,
+    .dropdown > a.active::after { width:0 !important; }
+    .dropdown-menu{
+      position:absolute; top:100%; left:0;
+      min-width:220px; background:#fff; border:1px solid #e5e7eb; border-radius:10px;
+      box-shadow:0 12px 28px rgba(0,0,0,.12);
+      padding:.35rem; display:none; z-index:1001;
+    }
+    .dropdown-menu a{
+      display:block; padding:.6rem .75rem; margin:.1rem 0;
+      border-radius:8px; text-decoration:none; color:var(--text);
+    }
+    .dropdown-menu a:hover{ background:#f3f4f6; }
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu,
+    .dropdown.open .dropdown-menu{ display:block; }
+
     /*–– Hero Overrides ––*/
     section:not(.hero) {
       max-width: 1000px;
@@ -307,7 +329,15 @@
   <header>
     <nav>
       <div><strong><a href="index.html">Rickards Invitational</a></strong></div>
-      <div>
+      <div class="nav-right">
+        <!-- DROPDOWN: Registration -->
+        <div class="dropdown">
+          <a href="registration.html">Registration</a>
+          <div class="dropdown-menu" role="menu" aria-label="Registration">
+            <a href="registration.html">Sign-Up Forms</a>
+            <a href="school-codes.html">School Codes</a>
+          </div>
+        </div>
         <a href="past-tests.html">Past Tests</a>
         <a href="team.html">Team</a>
         <a href="sponsors.html">Sponsors</a>
@@ -355,10 +385,10 @@
       <div class="copy">
         <h2>Snacks & Desserts by Rickards DM</h2>
         <p><strong>Rickards Dance Marathon will be selling snacks and dessert!</strong>
-          <p>Grab a treat between rounds and support our school’s Miracle Network Dance Marathon.</p>
+        <p>Grab a treat between rounds and support our school’s Miracle Network Dance Marathon.</p>
       </div>
     </div>
-    </section>
+  </section>
 
   <!-- Why Us -->
   <section class="why-us">
@@ -542,6 +572,23 @@
       const slides = await buildSlides();
       initAutoplay(slides);
     })();
+  </script>
+
+  <!-- Touch toggle for dropdown (mobile support) -->
+  <script>
+    document.querySelectorAll('.dropdown > a').forEach(t => {
+      t.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && dd.querySelector('.dropdown-menu')) {
+          e.preventDefault();
+          dd.classList.toggle('open');
+        }
+      });
+      document.addEventListener('click', (e) => {
+        const dd = t.closest('.dropdown');
+        if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+      });
+    });
   </script>
 </body>
 </html>
