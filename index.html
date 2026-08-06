@@ -8,14 +8,14 @@
   <title>Rickards Math Invitational 2026</title>
 
   <!-- SEO meta description shown under the title in search results -->
-  <meta name="description" content="Join the 2026 James S. Rickards Fall Invitational, one of the largest math competitions in the Southeast, on Saturday, November 1st in Tallahassee, FL.">
+  <meta name="description" content="Join the 2026 James S. Rickards Fall Invitational, one of the largest math competitions in the Southeast, on Saturday, November 14, 2026 in Tallahassee, FL.">
 
   <!-- Canonical URL to avoid duplicate-content issues -->
   <link rel="canonical" href="https://rickardsinvitational.github.io/">
 
   <!-- Open Graph tags for social sharing previews -->
   <meta property="og:title" content="Rickards Math Invitational 2026">
-  <meta property="og:description" content="Join the 2026 James S. Rickards Fall Invitational, one of the largest math competitions in the Southeast.">
+  <meta property="og:description" content="Join the 2026 James S. Rickards Fall Invitational, one of the largest math competitions in the Southeast, on Saturday, November 14, 2026.">
   <meta property="og:url" content="https://rickardsinvitational.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://rickardsinvitational.github.io/assets/og-image.png">
@@ -148,44 +148,24 @@
       gap: 2rem;
       align-items: stretch;
     }
-    .director-welcome,
-    .guest-speaker {
+    .director-welcome {
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       padding: 2rem;
-      flex: 1 1 300px;
+      flex: 1 1 100%;
       display: flex;
       flex-direction: column;
     }
-    .director-welcome h2,
-    .guest-speaker h2 {
+    .director-welcome h2 {
       text-align: center;
       font-weight: 700;
       margin-bottom: 1rem;
       color: var(--primary);
     }
-    .director-welcome p,
-    .guest-speaker p {
+    .director-welcome p {
       line-height: 1.6;
       margin-bottom: 1rem;
-    }
-    .guest-speaker .photo-placeholder {
-      width: 100%;
-      padding-bottom: 75%;
-      background: #eee;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .guest-speaker .photo-placeholder img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
     }
 
     /*–– Full-width split panel ––*/
@@ -347,7 +327,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <h1 data-aos="fade-down">Rickards Math Invitational</h1>
+    <h1 data-aos="fade-down"><br>Rickards Math Invitational</h1>
     <p data-aos="fade-up" data-aos-delay="200">Saturday, November 14, 2026 • Tallahassee, FL</p>
     <div class="scroll-down">⌄</div>
   </section>
@@ -358,19 +338,11 @@
       <h2>Welcome from the Director</h2>
       <p>Dear Competitors,</p>
       <p>It is my great pleasure to welcome you to the 2026 James S. Rickards Fall Invitational. Each year, our student-run team works tirelessly to design problems that promote the joy of mathematics.</p>
-      <p>We’re thrilled to host over 1,000 participants in person on Saturday, November 1st, and to open our mail-in division to schools nationwide. After the tests are submitted, we’ll reveal the results and honor the top performers.</p>
+      <p>We’re thrilled to host over 1,000 participants in person on Saturday, November 14, 2026, and to open our mail-in division to schools nationwide. After the tests are submitted, we’ll reveal the results and honor the top performers.</p>
       <p>Thank you to everyone who attended last year's event. Your enthusiasm is central to what makes our Invitational succeed. However, we've noted and fixed various concerns you had from last year.</p>
       <p>This year, we're debuting a new, streamlined process that will make it easier than ever for students to participate and coaches to register. We'll be sending more details regarding this process in a series of email updates closer to the event.</p>
       <p>Thank you for your passion and dedication. I look forward to an unforgettable day of problem-solving.</p>
       <p>Sincerely,<br>Rakesh Raj<br>Director, Rickards Math Invitational</p>
-    </div>
-
-    <div class="guest-speaker">
-      <h2>Guest Speaker</h2>
-      <div class="photo-placeholder">
-        <img src="poshenloh.jpg" alt="Dr. Po-Shen Loh">
-      </div>
-      <p>Po-Shen Loh is a social entrepreneur and mathematician, with a track record of inventing incentive-aligned solutions to address timely population-scale real-world problems, from pandemic control to helping human society thrive in the AI era. He is a math professor at Carnegie Mellon University, and served a decade-long term as the national coach of the USA International Mathematical Olympiad team from 2013–2023. Since 2023, he has been the Vice President of the IMO Foundation, as the founder and organizer of the annual IMO Alumni Reunion. His latest innovation, <a href="https://live.poshenloh.com" target="_blank" rel="noopener noreferrer">LIVE</a>, brings together math stars and professional actors, to mass-produce live-streamed creative problem-solving lessons that match the engagement level of online video entertainment.</p>
     </div>
     
 
@@ -422,7 +394,7 @@
   <!-- Countdown (no HTML edits; injected below the date line in the hero) -->
   <script>
     (function () {
-      const EVENT_START_ISO = '2026-11-14T09:00:00-08:00';
+      const EVENT_START_ISO = '2026-11-14T09:00:00-05:00';
       function two(n){ return n < 10 ? '0' + n : '' + n; }
       function formatDiff(ms) {
         if (ms <= 0) return null;
