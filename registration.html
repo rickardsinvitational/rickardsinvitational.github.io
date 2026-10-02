@@ -110,7 +110,8 @@
                  pattern="^[0-9]{4}$" title="Enter exactly 4 digits (e.g., 1400)" required placeholder="e.g. 1400"
                  oninput="this.value=this.value.replace(/\\D/g,'').slice(0,4)">
         </div>
-        <div><label>Boxes of Pizza ($15 each)</label><input type="number" name="pizzaBoxes" min="0" step="1" value="0"></div>
+        <div><label for="middle-cheese-pizza">Boxes of Cheese Pizza ($15 each)</label><input id="middle-cheese-pizza" type="number" name="cheesePizzaBoxes" min="0" step="1" value="0"></div>
+        <div><label for="middle-pepperoni-pizza">Boxes of Pepperoni Pizza ($15 each)</label><input id="middle-pepperoni-pizza" type="number" name="pepperoniPizzaBoxes" min="0" step="1" value="0"></div>
       </div>
 
       <h3 class="group-title">Student Names (one per line, leave blank if none)</h3>
@@ -139,7 +140,8 @@
                  pattern="^[0-9]{4}$" title="Enter exactly 4 digits (e.g., 1400)" required placeholder="e.g. 1400"
                  oninput="this.value=this.value.replace(/\\D/g,'').slice(0,4)">
         </div>
-        <div><label>Boxes of Pizza ($15 each)</label><input type="number" name="pizzaBoxes" min="0" step="1" value="0"></div>
+        <div><label for="elementary-cheese-pizza">Boxes of Cheese Pizza ($15 each)</label><input id="elementary-cheese-pizza" type="number" name="cheesePizzaBoxes" min="0" step="1" value="0"></div>
+        <div><label for="elementary-pepperoni-pizza">Boxes of Pepperoni Pizza ($15 each)</label><input id="elementary-pepperoni-pizza" type="number" name="pepperoniPizzaBoxes" min="0" step="1" value="0"></div>
       </div>
       <h3 class="group-title">Student Names (one per line, leave blank if none)</h3>
       <div class="grid grid-2">
@@ -291,7 +293,12 @@
         const email      = (form.get('email')||'').trim();
         const schoolName = (form.get('schoolName')||'').trim();
         const schoolCode = (form.get('schoolCode')||'').trim();
-        const pizzaBoxes = parseInt(form.get('pizzaBoxes')||'0', 10) || 0; // Mail-In has none → 0
+        const cheesePizzaBoxes = regType === 'Mail-In' ? 0 : Number(form.get('cheesePizzaBoxes') || '0');
+        const pepperoniPizzaBoxes = regType === 'Mail-In' ? 0 : Number(form.get('pepperoniPizzaBoxes') || '0');
+        if (![cheesePizzaBoxes, pepperoniPizzaBoxes].every(n => Number.isSafeInteger(n) && n >= 0)) {
+          throw new Error('Pizza quantities must be non-negative whole numbers.');
+        }
+        const pizzaBoxes = cheesePizzaBoxes + pepperoniPizzaBoxes;
 
         if (!/^\d{4}$/.test(schoolCode)) throw new Error('School code must be exactly 4 digits.');
 
@@ -306,7 +313,8 @@
 
         // === Reserve a global contiguous block of middle 3-digit numbers ===
         const start = await reserveMiddleBlock(students.length, {
-          schoolCode, schoolName, regType, count: students.length
+          schoolCode, schoolName, regType, count: students.length,
+          cheesePizzaBoxes, pepperoniPizzaBoxes, pizzaBoxes
         });
 
         // Assign middle digits from the reserved block
@@ -320,12 +328,14 @@
         let total = 0;
         const costsByField = {};
         defs.forEach(d => { const c = countsByField[d.field]; const cost = c*pricePerStudent; costsByField[d.field]=cost; total+=cost; });
-        let pizzaCost = 0;
-        if (regType !== 'Mail-In' && pizzaBoxes > 0) { pizzaCost = pizzaBoxes*pricePerPizza; total += pizzaCost; }
+        const cheesePizzaCost = cheesePizzaBoxes * pricePerPizza;
+        const pepperoniPizzaCost = pepperoniPizzaBoxes * pricePerPizza;
+        const pizzaCost = cheesePizzaCost + pepperoniPizzaCost;
+        total += pizzaCost;
 
         // PDFs
         const studentPdf = makeStudentPDF({ schoolName, schoolCode, regType, students });
-        const invoicePdf = makeInvoicePDF({ schoolName, regType, students, pizzaBoxes: (regType==='Mail-In'?0:pizzaBoxes) });
+        const invoicePdf = makeInvoicePDF({ schoolName, regType, students, cheesePizzaBoxes, pepperoniPizzaBoxes });
         const studentBase64 = studentPdf.output('datauristring').split(',')[1];
         const invoiceBase64 = invoicePdf.output('datauristring').split(',')[1];
 
@@ -340,6 +350,10 @@
           reg_type: regType,
           ids_text: idsText,
           total_due: total,
+          cheese_pizza_boxes: cheesePizzaBoxes,
+          cheese_pizza_cost: cheesePizzaCost,
+          pepperoni_pizza_boxes: pepperoniPizzaBoxes,
+          pepperoni_pizza_cost: pepperoniPizzaCost,
           attachments: [
             { name: `StudentIDs_${schoolCode}.pdf`, data: studentBase64, content_type: 'application/pdf' },
             { name: `Invoice_${schoolCode}.pdf`,    data: invoiceBase64, content_type: 'application/pdf' }
@@ -412,7 +426,7 @@
       return doc;
     }
 
-    function makeInvoicePDF({ schoolName, regType, students, pizzaBoxes }) {
+    function makeInvoicePDF({ schoolName, regType, students, cheesePizzaBoxes = 0, pepperoniPizzaBoxes = 0 }) {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF({ unit:'pt', format:'letter' });
       const margin = 54, gap = 18; let y = margin;
@@ -430,9 +444,12 @@
         const c = counts[label]; const cost = c * pricePerStudent; total += cost;
         doc.text(`${label}: ${c} students × $${pricePerStudent} = $${cost}`, margin, y); y += gap;
       });
-      if (regType !== 'Mail-In' && pizzaBoxes > 0) {
-        const pizzaCost = pizzaBoxes * pricePerPizza; total += pizzaCost;
-        doc.text(`Pizza Boxes: ${pizzaBoxes} × $${pricePerPizza} = $${pizzaCost}`, margin, y); y += gap;
+      if (regType !== 'Mail-In') {
+        const cheesePizzaCost = cheesePizzaBoxes * pricePerPizza;
+        const pepperoniPizzaCost = pepperoniPizzaBoxes * pricePerPizza;
+        total += cheesePizzaCost + pepperoniPizzaCost;
+        doc.text(`Cheese Pizza Boxes: ${cheesePizzaBoxes} × $${pricePerPizza} = $${cheesePizzaCost}`, margin, y); y += gap;
+        doc.text(`Pepperoni Pizza Boxes: ${pepperoniPizzaBoxes} × $${pricePerPizza} = $${pepperoniPizzaCost}`, margin, y); y += gap;
       }
       doc.setLineWidth(0.5); doc.line(margin, y, 612 - margin, y); y += gap;
       doc.setFont('helvetica', 'bold'); doc.setFontSize(14); doc.text(`TOTAL: $${total}`, margin, y);
