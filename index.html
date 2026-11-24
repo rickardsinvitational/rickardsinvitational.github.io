@@ -350,8 +350,8 @@
     <div class="rdm-panel" data-aos="fade-up" style="align-items:center;">
       <div class="copy">
         <h2>Results</h2>
-        <p><strong>View the official results for the 2025 Rickards Math Invitational below:</strong></p>
-        <p><a href="https://drive.google.com/drive/folders/1v4Fn4-DPJOOWriboLDWmmvG5EU_debC4?usp=sharing" target="_blank" rel="noopener noreferrer">2025 Rickards Invitational Results</a></p>
+        <p><strong>View the official results for the 2026 Rickards Math Invitational below:</strong></p>
+        <p><a href="https://drive.google.com/drive/folders/12THLWHgtkiVy0ckKPtvv7vzFfu2uBgim?usp=sharing" target="_blank" rel="noopener noreferrer">2026 Rickards Invitational Results</a></p>
       </div>
     </div>
 
@@ -395,6 +395,7 @@
   <script>
     (function () {
       const EVENT_START_ISO = '2026-11-14T09:00:00-05:00';
+      const EVENT_END_ISO = '2026-11-14T15:45:00-05:00';
       function two(n){ return n < 10 ? '0' + n : '' + n; }
       function formatDiff(ms) {
         if (ms <= 0) return null;
@@ -419,17 +420,31 @@
         } else {
           hero.appendChild(el);
         }
-        const target = new Date(EVENT_START_ISO).getTime();
+        const start = Date.parse(EVENT_START_ISO);
+        const end = Date.parse(EVENT_END_ISO);
+        
         function tick() {
           const now = Date.now();
-          const diff = target - now;
-          const parts = formatDiff(diff);
-          if (!parts) { el.textContent = 'Event in progress!'; clearInterval(timer); return; }
-          const { days, hours, mins, secs } = parts;
+        
+          if (now >= end) {
+            el.textContent = 'Thank you for coming!';
+            clearInterval(timer);
+            return;
+          }
+        
+          if (now >= start) {
+            if (el.textContent !== 'Event in progress!') {
+              el.textContent = 'Event in progress!';
+            }
+            return;
+          }
+        
+          const { days, hours, mins, secs } = formatDiff(start - now);
           el.textContent = `${days}d • ${two(hours)}h • ${two(mins)}m • ${two(secs)}s`;
         }
-        tick();
+        
         const timer = setInterval(tick, 1000);
+        tick();
       }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', mountCountdown);
